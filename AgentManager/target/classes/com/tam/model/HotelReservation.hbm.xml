@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2015 7:58:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.tam.model.HotelReservation" table="hotel_reservation" catalog="tam">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pnr" class="com.tam.model.Pnr" fetch="select">
+            <column name="pnr_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="hotel" class="com.tam.model.Hotel" fetch="select">
+            <column name="hotel_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pax" class="com.tam.model.Pax" fetch="select">
+            <column name="traveler_id" not-null="true" />
+        </many-to-one>
+        <property name="dateFrom" type="date">
+            <column name="date_from" length="10" not-null="true" />
+        </property>
+        <property name="dateUntil" type="date">
+            <column name="date_until" length="10" not-null="true" />
+        </property>
+        <property name="roomCount" type="int">
+            <column name="room_count" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

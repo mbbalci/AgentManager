@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2015 7:58:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.tam.model.Country" table="country" catalog="tam">
+        <id name="code" type="string">
+            <column name="code" length="2" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" not-null="true" />
+        </property>
+        <set name="regions" table="region" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="country_code" length="2" not-null="true" />
+            </key>
+            <one-to-many class="com.tam.model.Region" />
+        </set>
+        <set name="cities" table="city" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="country_code" length="2" not-null="true" />
+            </key>
+            <one-to-many class="com.tam.model.City" />
+        </set>
+    </class>
+</hibernate-mapping>

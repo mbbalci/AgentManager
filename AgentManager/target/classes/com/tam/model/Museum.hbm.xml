@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2015 7:58:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.tam.model.Museum" table="museum" catalog="tam">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="city" class="com.tam.model.City" fetch="select">
+            <column name="city_code" length="3" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="45" not-null="true" />
+        </property>
+        <property name="fareId" type="int">
+            <column name="fare_id" not-null="true" />
+        </property>
+        <set name="museumFares" table="museum_fare" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="museum_id" not-null="true" />
+            </key>
+            <one-to-many class="com.tam.model.MuseumFare" />
+        </set>
+        <set name="tours" table="tour" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="museum_id" />
+            </key>
+            <one-to-many class="com.tam.model.Tour" />
+        </set>
+    </class>
+</hibernate-mapping>

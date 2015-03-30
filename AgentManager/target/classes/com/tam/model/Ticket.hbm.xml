@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2015 7:58:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.tam.model.Ticket" table="ticket" catalog="tam">
+        <id name="tktNo" type="string">
+            <column name="tkt_no" length="13" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="user" class="com.tam.model.User" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="paymentType" class="com.tam.model.PaymentType" fetch="select">
+            <column name="payment_type_code" length="2" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pnr" class="com.tam.model.Pnr" fetch="select">
+            <column name="pnr_id" />
+        </many-to-one>
+        <many-to-one name="pax" class="com.tam.model.Pax" fetch="select">
+            <column name="traveler_id" not-null="true" />
+        </many-to-one>
+        <property name="status" type="string">
+            <column name="status" length="2" not-null="true" />
+        </property>
+        <property name="dos" type="timestamp">
+            <column name="dos" length="19" not-null="true" />
+        </property>
+        <property name="dor" type="timestamp">
+            <column name="dor" length="19" />
+        </property>
+        <property name="buyingAmount" type="double">
+            <column name="buying_amount" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="buyingCurrency" type="string">
+            <column name="buying_currency" length="3" not-null="true" />
+        </property>
+        <property name="sellingAmount" type="double">
+            <column name="selling_amount" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="sellingCurrency" type="string">
+            <column name="selling_currency" length="3" not-null="true" />
+        </property>
+        <set name="coupons" table="coupon" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tkt_no" length="13" not-null="true" />
+            </key>
+            <one-to-many class="com.tam.model.Coupon" />
+        </set>
+    </class>
+</hibernate-mapping>

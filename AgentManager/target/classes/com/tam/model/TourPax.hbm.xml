@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2015 7:58:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.tam.model.TourPax" table="tour_pax" catalog="tam">
+        <composite-id name="id" class="com.tam.model.TourPaxId">
+            <key-property name="tourId" type="int">
+                <column name="tour_id" />
+            </key-property>
+            <key-property name="paxId" type="int">
+                <column name="pax_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="pax" class="com.tam.model.Pax" update="false" insert="false" fetch="select">
+            <column name="pax_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.tam.model.User" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tour" class="com.tam.model.Tour" update="false" insert="false" fetch="select">
+            <column name="tour_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

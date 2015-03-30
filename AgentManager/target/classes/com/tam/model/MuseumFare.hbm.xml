@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2015 7:58:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.tam.model.MuseumFare" table="museum_fare" catalog="tam">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="museum" class="com.tam.model.Museum" fetch="select">
+            <column name="museum_id" not-null="true" />
+        </many-to-one>
+        <property name="adultFare" type="double">
+            <column name="adult_fare" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="childFare" type="double">
+            <column name="child_fare" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="discountFare" type="double">
+            <column name="discount_fare" precision="22" scale="0" not-null="true">
+                <comment>student,teacher,senior discount</comment>
+            </column>
+        </property>
+        <property name="currency" type="string">
+            <column name="currency" length="3" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2015 7:58:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.tam.model.Pnr" table="pnr" catalog="tam">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="com.tam.model.User" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="pnrNo" type="string">
+            <column name="pnr_no" length="6" not-null="true" />
+        </property>
+        <property name="optionDate" type="timestamp">
+            <column name="option_date" length="19" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="2" not-null="true">
+                <comment>OK : Active reservation CX : Canceled reservation</comment>
+            </column>
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="2">
+                <comment>OW : One way flight RT : Round trip flight HH : Hotel</comment>
+            </column>
+        </property>
+        <property name="cancelReason" type="string">
+            <column name="cancel_reason" length="200" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="200" />
+        </property>
+        <property name="recordDate" type="timestamp">
+            <column name="record_date" length="19" not-null="true" />
+        </property>
+        <set name="tickets" table="ticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pnr_id" />
+            </key>
+            <one-to-many class="com.tam.model.Ticket" />
+        </set>
+        <set name="hotelReservations" table="hotel_reservation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pnr_id" not-null="true" />
+            </key>
+            <one-to-many class="com.tam.model.HotelReservation" />
+        </set>
+        <set name="paxes" table="pax" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pnr_id" not-null="true" />
+            </key>
+            <one-to-many class="com.tam.model.Pax" />
+        </set>
+    </class>
+</hibernate-mapping>

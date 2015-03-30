@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2015 7:58:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.tam.model.HotelFare" table="hotel_fare" catalog="tam">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="hotel" class="com.tam.model.Hotel" fetch="select">
+            <column name="hotel_id" not-null="true" />
+        </many-to-one>
+        <property name="roomTypeCode" type="string">
+            <column name="room_type_code" length="20" not-null="true" />
+        </property>
+        <property name="buyingFare" type="double">
+            <column name="buying_fare" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="sellingFare" type="double">
+            <column name="selling_fare" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="gateFare" type="double">
+            <column name="gate_fare" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

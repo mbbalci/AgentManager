@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2015 7:58:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.tam.model.AuctionPayment" table="auction_payment" catalog="tam">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="auction" class="com.tam.model.Auction" fetch="select">
+            <column name="auction_id" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="100" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="amount" precision="22" scale="0" />
+        </property>
+        <property name="currency" type="string">
+            <column name="currency" length="3" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="200" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="1">
+                <comment>C : Cost, amount is negative D : Deduction, amount is negative P : Payment, amount is positive</comment>
+            </column>
+        </property>
+        <property name="opsDate" type="timestamp">
+            <column name="ops_date" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
