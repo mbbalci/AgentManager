@@ -22,6 +22,8 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "auction", catalog = "tam")
 public class Auction implements java.io.Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String auctionName;
@@ -36,8 +38,8 @@ public class Auction implements java.io.Serializable {
 	private Double estimatedCost;
 	private Double contractAmount;
 	private Double estimatedProfit;
-	private Set auctionPayments = new HashSet(0);
-	private Set auctionItems = new HashSet(0);
+	private Set<AuctionPayment> auctionPayments = new HashSet<AuctionPayment>(0);
+	private Set<AuctionItem> auctionItems = new HashSet<AuctionItem>(0);
 
 	public Auction() {
 	}
@@ -46,8 +48,9 @@ public class Auction implements java.io.Serializable {
 			String coordinatorName, String coordinatorSurname,
 			String orginizationName, Date auctionDate, Date contractDate,
 			Date kickOffDate, Date dueDate, Double estimatedCost,
-			Double contractAmount, Double estimatedProfit, Set auctionPayments,
-			Set auctionItems) {
+			Double contractAmount, Double estimatedProfit, Set<AuctionPayment> auctionPayments,
+			Set<AuctionItem> auctionItems) {
+		
 		this.auctionName = auctionName;
 		this.registryNo = registryNo;
 		this.coordinatorName = coordinatorName;
@@ -188,20 +191,20 @@ public class Auction implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "auction")
-	public Set getAuctionPayments() {
+	public Set<AuctionPayment> getAuctionPayments() {
 		return this.auctionPayments;
 	}
 
-	public void setAuctionPayments(Set auctionPayments) {
+	public void setAuctionPayments(Set<AuctionPayment> auctionPayments) {
 		this.auctionPayments = auctionPayments;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "auction")
-	public Set getAuctionItems() {
+	public Set<AuctionItem> getAuctionItems() {
 		return this.auctionItems;
 	}
 
-	public void setAuctionItems(Set auctionItems) {
+	public void setAuctionItems(Set<AuctionItem> auctionItems) {
 		this.auctionItems = auctionItems;
 	}
 

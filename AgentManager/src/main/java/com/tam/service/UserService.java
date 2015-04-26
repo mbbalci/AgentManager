@@ -1,9 +1,11 @@
 package com.tam.service;
 
+import com.tam.model.User;
+
 public interface UserService {
 
-	UserInfo loginUser(String userName, String password);
+	User loginUser(String userName, String password) throws Exception;
 
-	boolean checkUserProcess(UserInfo userInfo, String processCode);
+	boolean checkUserProcess(User user, String processCode);
 
 }

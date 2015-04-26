@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "user", catalog = "tam")
 public class User implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String userName;
@@ -29,11 +30,11 @@ public class User implements java.io.Serializable {
 	private String fullName;
 	private String disable;
 	private Date recordDate;
-	private Set userRoles = new HashSet(0);
-	private Set tourPaxes = new HashSet(0);
-	private Set pnrs = new HashSet(0);
-	private Set tours = new HashSet(0);
-	private Set tickets = new HashSet(0);
+	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
+	private Set<Pax> tourPaxes = new HashSet<Pax>(0);
+	private Set<Pnr> pnrs = new HashSet<Pnr>(0);
+	private Set<Tour> tours = new HashSet<Tour>(0);
+	private Set<Ticket> tickets = new HashSet<Ticket>(0);
 
 	public User() {
 	}
@@ -48,8 +49,8 @@ public class User implements java.io.Serializable {
 	}
 
 	public User(String userName, String userPassword, String fullName,
-			String disable, Date recordDate, Set userRoles, Set tourPaxes,
-			Set pnrs, Set tours, Set tickets) {
+			String disable, Date recordDate, Set<UserRole> userRoles, Set<Pax> tourPaxes,
+			Set<Pnr> pnrs, Set<Tour> tours, Set<Ticket> tickets) {
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.fullName = fullName;
@@ -120,47 +121,47 @@ public class User implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getUserRoles() {
+	public Set<UserRole> getUserRoles() {
 		return this.userRoles;
 	}
 
-	public void setUserRoles(Set userRoles) {
+	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getTourPaxes() {
+	public Set<Pax> getTourPaxes() {
 		return this.tourPaxes;
 	}
 
-	public void setTourPaxes(Set tourPaxes) {
+	public void setTourPaxes(Set<Pax> tourPaxes) {
 		this.tourPaxes = tourPaxes;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getPnrs() {
+	public Set<Pnr> getPnrs() {
 		return this.pnrs;
 	}
 
-	public void setPnrs(Set pnrs) {
+	public void setPnrs(Set<Pnr> pnrs) {
 		this.pnrs = pnrs;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getTours() {
+	public Set<Tour> getTours() {
 		return this.tours;
 	}
 
-	public void setTours(Set tours) {
+	public void setTours(Set<Tour> tours) {
 		this.tours = tours;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getTickets() {
+	public Set<Ticket> getTickets() {
 		return this.tickets;
 	}
 
-	public void setTickets(Set tickets) {
+	public void setTickets(Set<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 

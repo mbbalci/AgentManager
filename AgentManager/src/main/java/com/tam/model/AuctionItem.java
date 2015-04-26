@@ -1,6 +1,6 @@
 package com.tam.model;
 
-// Generated Mar 29, 2015 10:00:22 PM by Hibernate Tools 4.0.0
+// Generated Apr 26, 2015 5:10:28 PM by Hibernate Tools 4.0.0
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

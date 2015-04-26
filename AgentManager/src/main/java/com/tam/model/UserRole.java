@@ -18,6 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user_role", catalog = "tam")
 public class UserRole implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private UserRoleId id;
 	private User user;

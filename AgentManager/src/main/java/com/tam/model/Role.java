@@ -1,6 +1,6 @@
 package com.tam.model;
 
-// Generated Mar 29, 2015 10:00:22 PM by Hibernate Tools 4.0.0
+// Generated Apr 26, 2015 5:10:28 PM by Hibernate Tools 4.0.0
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,7 +22,7 @@ public class Role implements java.io.Serializable {
 
 	private String code;
 	private String explanation;
-	private Set userRoles = new HashSet(0);
+	private Set users = new HashSet(0);
 	private Set processes = new HashSet(0);
 
 	public Role() {
@@ -33,10 +32,10 @@ public class Role implements java.io.Serializable {
 		this.code = code;
 	}
 
-	public Role(String code, String explanation, Set userRoles, Set processes) {
+	public Role(String code, String explanation, Set users, Set processes) {
 		this.code = code;
 		this.explanation = explanation;
-		this.userRoles = userRoles;
+		this.users = users;
 		this.processes = processes;
 	}
 
@@ -59,13 +58,14 @@ public class Role implements java.io.Serializable {
 		this.explanation = explanation;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-	public Set getUserRoles() {
-		return this.userRoles;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_role", catalog = "tam", joinColumns = { @JoinColumn(name = "role_code", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "user_id", nullable = false, updatable = false) })
+	public Set getUsers() {
+		return this.users;
 	}
 
-	public void setUserRoles(Set userRoles) {
-		this.userRoles = userRoles;
+	public void setUsers(Set users) {
+		this.users = users;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
