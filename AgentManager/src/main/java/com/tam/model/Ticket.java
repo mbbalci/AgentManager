@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ticket", catalog = "tam")
 public class Ticket implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String tktNo;
 	private User user;
@@ -35,7 +36,7 @@ public class Ticket implements java.io.Serializable {
 	private String buyingCurrency;
 	private double sellingAmount;
 	private String sellingCurrency;
-	private Set coupons = new HashSet(0);
+	private Set<Coupon> coupons = new HashSet<Coupon>(0);
 
 	public Ticket() {
 	}
@@ -58,7 +59,7 @@ public class Ticket implements java.io.Serializable {
 	public Ticket(String tktNo, User user, PaymentType paymentType, Pnr pnr,
 			Pax pax, String status, Date dos, Date dor, double buyingAmount,
 			String buyingCurrency, double sellingAmount,
-			String sellingCurrency, Set coupons) {
+			String sellingCurrency, Set<Coupon> coupons) {
 		this.tktNo = tktNo;
 		this.user = user;
 		this.paymentType = paymentType;
@@ -190,11 +191,11 @@ public class Ticket implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ticket")
-	public Set getCoupons() {
+	public Set<Coupon> getCoupons() {
 		return this.coupons;
 	}
 
-	public void setCoupons(Set coupons) {
+	public void setCoupons(Set<Coupon> coupons) {
 		this.coupons = coupons;
 	}
 

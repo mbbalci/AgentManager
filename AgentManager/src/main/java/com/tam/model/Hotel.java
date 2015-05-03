@@ -21,6 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "hotel", catalog = "tam")
 public class Hotel implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private City city;
@@ -28,9 +29,9 @@ public class Hotel implements java.io.Serializable {
 	private String address;
 	private String email;
 	private String phone;
-	private Set hotelFares = new HashSet(0);
-	private Set hotelReservations = new HashSet(0);
-	private Set tours = new HashSet(0);
+	private Set<HotelFare> hotelFares = new HashSet<HotelFare>(0);
+	private Set<HotelReservation> hotelReservations = new HashSet<HotelReservation>(0);
+	private Set<Tour> tours = new HashSet<Tour>(0);
 
 	public Hotel() {
 	}
@@ -42,7 +43,7 @@ public class Hotel implements java.io.Serializable {
 	}
 
 	public Hotel(City city, String name, String address, String email,
-			String phone, Set hotelFares, Set hotelReservations, Set tours) {
+			String phone, Set<HotelFare> hotelFares, Set<HotelReservation> hotelReservations, Set<Tour> tours) {
 		this.city = city;
 		this.name = name;
 		this.address = address;
@@ -111,29 +112,29 @@ public class Hotel implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-	public Set getHotelFares() {
+	public Set<HotelFare> getHotelFares() {
 		return this.hotelFares;
 	}
 
-	public void setHotelFares(Set hotelFares) {
+	public void setHotelFares(Set<HotelFare> hotelFares) {
 		this.hotelFares = hotelFares;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-	public Set getHotelReservations() {
+	public Set<HotelReservation> getHotelReservations() {
 		return this.hotelReservations;
 	}
 
-	public void setHotelReservations(Set hotelReservations) {
+	public void setHotelReservations(Set<HotelReservation> hotelReservations) {
 		this.hotelReservations = hotelReservations;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-	public Set getTours() {
+	public Set<Tour> getTours() {
 		return this.tours;
 	}
 
-	public void setTours(Set tours) {
+	public void setTours(Set<Tour> tours) {
 		this.tours = tours;
 	}
 

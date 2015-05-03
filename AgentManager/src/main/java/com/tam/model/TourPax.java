@@ -18,6 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tour_pax", catalog = "tam")
 public class TourPax implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private TourPaxId id;
 	private Pax pax;

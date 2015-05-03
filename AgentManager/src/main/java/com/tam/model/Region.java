@@ -22,12 +22,13 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "region", catalog = "tam", uniqueConstraints = @UniqueConstraint(columnNames = "code"))
 public class Region implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Country country;
 	private String code;
 	private String explanation;
-	private Set cities = new HashSet(0);
+	private Set<City> cities = new HashSet<City>(0);
 
 	public Region() {
 	}
@@ -37,7 +38,7 @@ public class Region implements java.io.Serializable {
 		this.code = code;
 	}
 
-	public Region(Country country, String code, String explanation, Set cities) {
+	public Region(Country country, String code, String explanation, Set<City> cities) {
 		this.country = country;
 		this.code = code;
 		this.explanation = explanation;
@@ -84,11 +85,11 @@ public class Region implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "region")
-	public Set getCities() {
+	public Set<City> getCities() {
 		return this.cities;
 	}
 
-	public void setCities(Set cities) {
+	public void setCities(Set<City> cities) {
 		this.cities = cities;
 	}
 

@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tour", catalog = "tam")
 public class Tour implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private User user;
@@ -45,8 +46,8 @@ public class Tour implements java.io.Serializable {
 	private String currency;
 	private String note;
 	private Date recordDate;
-	private Set tourRestorants = new HashSet(0);
-	private Set tourPaxes = new HashSet(0);
+	private Set<TourRestorant> tourRestorants = new HashSet<TourRestorant>(0);
+	private Set<TourPax> tourPaxes = new HashSet<TourPax>(0);
 
 	public Tour() {
 	}
@@ -69,8 +70,8 @@ public class Tour implements java.io.Serializable {
 			Double transportationFare, Double hotelFare,
 			String cateringOnVehicle, Double cateringOnVehicleFare,
 			Integer policyNo, Double policyAmount, double sellingAmount,
-			String currency, String note, Date recordDate, Set tourRestorants,
-			Set tourPaxes) {
+			String currency, String note, Date recordDate, Set<TourRestorant> tourRestorants,
+			Set<TourPax> tourPaxes) {
 		this.user = user;
 		this.museum = museum;
 		this.guide = guide;
@@ -286,20 +287,20 @@ public class Tour implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tour")
-	public Set getTourRestorants() {
+	public Set<TourRestorant> getTourRestorants() {
 		return this.tourRestorants;
 	}
 
-	public void setTourRestorants(Set tourRestorants) {
+	public void setTourRestorants(Set<TourRestorant> tourRestorants) {
 		this.tourRestorants = tourRestorants;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tour")
-	public Set getTourPaxes() {
+	public Set<TourPax> getTourPaxes() {
 		return this.tourPaxes;
 	}
 
-	public void setTourPaxes(Set tourPaxes) {
+	public void setTourPaxes(Set<TourPax> tourPaxes) {
 		this.tourPaxes = tourPaxes;
 	}
 

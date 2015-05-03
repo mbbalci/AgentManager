@@ -17,10 +17,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tour_tranportation_type", catalog = "tam")
 public class TourTranportationType implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String code;
 	private String name;
-	private Set tours = new HashSet(0);
+	private Set<Tour> tours = new HashSet<Tour>(0);
 
 	public TourTranportationType() {
 	}
@@ -30,7 +31,7 @@ public class TourTranportationType implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public TourTranportationType(String code, String name, Set tours) {
+	public TourTranportationType(String code, String name, Set<Tour> tours) {
 		this.code = code;
 		this.name = name;
 		this.tours = tours;
@@ -56,11 +57,11 @@ public class TourTranportationType implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tourTranportationType")
-	public Set getTours() {
+	public Set<Tour> getTours() {
 		return this.tours;
 	}
 
-	public void setTours(Set tours) {
+	public void setTours(Set<Tour> tours) {
 		this.tours = tours;
 	}
 

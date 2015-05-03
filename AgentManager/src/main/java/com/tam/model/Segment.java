@@ -26,6 +26,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "segment", catalog = "tam", uniqueConstraints = @UniqueConstraint(columnNames = {
 		"flt_no", "dep_date", "aa_code", "dep_port", "arr_port" }))
 public class Segment implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Port portByArrPort;
@@ -34,7 +35,7 @@ public class Segment implements java.io.Serializable {
 	private String fltNo;
 	private Date depDate;
 	private Date recordDate;
-	private Set coupons = new HashSet(0);
+	private Set<Coupon> coupons = new HashSet<Coupon>(0);
 
 	public Segment() {
 	}
@@ -50,7 +51,7 @@ public class Segment implements java.io.Serializable {
 	}
 
 	public Segment(Port portByArrPort, Port portByDepPort, String aaCode,
-			String fltNo, Date depDate, Date recordDate, Set coupons) {
+			String fltNo, Date depDate, Date recordDate, Set<Coupon> coupons) {
 		this.portByArrPort = portByArrPort;
 		this.portByDepPort = portByDepPort;
 		this.aaCode = aaCode;
@@ -130,11 +131,11 @@ public class Segment implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "segment")
-	public Set getCoupons() {
+	public Set<Coupon> getCoupons() {
 		return this.coupons;
 	}
 
-	public void setCoupons(Set coupons) {
+	public void setCoupons(Set<Coupon> coupons) {
 		this.coupons = coupons;
 	}
 

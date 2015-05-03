@@ -19,6 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "contact_info", catalog = "tam")
 public class ContactInfo implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String email;
@@ -26,14 +27,14 @@ public class ContactInfo implements java.io.Serializable {
 	private String homePhone;
 	private String companyPhone;
 	private String address;
-	private Set guides = new HashSet(0);
-	private Set paxes = new HashSet(0);
+	private Set<Guide> guides = new HashSet<Guide>(0);
+	private Set<Pax> paxes = new HashSet<Pax>(0);
 
 	public ContactInfo() {
 	}
 
 	public ContactInfo(String email, String mobile, String homePhone,
-			String companyPhone, String address, Set guides, Set paxes) {
+			String companyPhone, String address, Set<Guide> guides, Set<Pax> paxes) {
 		this.email = email;
 		this.mobile = mobile;
 		this.homePhone = homePhone;
@@ -100,20 +101,20 @@ public class ContactInfo implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "contactInfo")
-	public Set getGuides() {
+	public Set<Guide> getGuides() {
 		return this.guides;
 	}
 
-	public void setGuides(Set guides) {
+	public void setGuides(Set<Guide> guides) {
 		this.guides = guides;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "contactInfo")
-	public Set getPaxes() {
+	public Set<Pax> getPaxes() {
 		return this.paxes;
 	}
 
-	public void setPaxes(Set paxes) {
+	public void setPaxes(Set<Pax> paxes) {
 		this.paxes = paxes;
 	}
 

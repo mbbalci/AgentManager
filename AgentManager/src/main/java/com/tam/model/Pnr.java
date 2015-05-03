@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "pnr", catalog = "tam")
 public class Pnr implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private User user;
@@ -34,9 +35,9 @@ public class Pnr implements java.io.Serializable {
 	private String cancelReason;
 	private String note;
 	private Date recordDate;
-	private Set tickets = new HashSet(0);
-	private Set hotelReservations = new HashSet(0);
-	private Set paxes = new HashSet(0);
+	private Set<Ticket> tickets = new HashSet<Ticket>(0);
+	private Set<HotelReservation> hotelReservations = new HashSet<HotelReservation>(0);
+	private Set<Pax> paxes = new HashSet<Pax>(0);
 
 	public Pnr() {
 	}
@@ -50,7 +51,7 @@ public class Pnr implements java.io.Serializable {
 
 	public Pnr(User user, String pnrNo, Date optionDate, String status,
 			String type, String cancelReason, String note, Date recordDate,
-			Set tickets, Set hotelReservations, Set paxes) {
+			Set<Ticket> tickets, Set<HotelReservation> hotelReservations, Set<Pax> paxes) {
 		this.user = user;
 		this.pnrNo = pnrNo;
 		this.optionDate = optionDate;
@@ -151,29 +152,29 @@ public class Pnr implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pnr")
-	public Set getTickets() {
+	public Set<Ticket> getTickets() {
 		return this.tickets;
 	}
 
-	public void setTickets(Set tickets) {
+	public void setTickets(Set<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pnr")
-	public Set getHotelReservations() {
+	public Set<HotelReservation> getHotelReservations() {
 		return this.hotelReservations;
 	}
 
-	public void setHotelReservations(Set hotelReservations) {
+	public void setHotelReservations(Set<HotelReservation> hotelReservations) {
 		this.hotelReservations = hotelReservations;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pnr")
-	public Set getPaxes() {
+	public Set<Pax> getPaxes() {
 		return this.paxes;
 	}
 
-	public void setPaxes(Set paxes) {
+	public void setPaxes(Set<Pax> paxes) {
 		this.paxes = paxes;
 	}
 

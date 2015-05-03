@@ -21,7 +21,8 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "hotel_reservation", catalog = "tam")
 public class HotelReservation implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private Pnr pnr;
 	private Hotel hotel;

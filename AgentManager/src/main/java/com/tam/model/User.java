@@ -2,15 +2,20 @@ package com.tam.model;
 
 // Generated Mar 29, 2015 10:00:22 PM by Hibernate Tools 4.0.0
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,8 +35,8 @@ public class User implements java.io.Serializable {
 	private String fullName;
 	private String disable;
 	private Date recordDate;
-	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
-	private Set<Pax> tourPaxes = new HashSet<Pax>(0);
+	private Set<Role> userRoles = new HashSet<Role>(0);
+	private Set<TourPax> tourPaxes = new HashSet<TourPax>(0);
 	private Set<Pnr> pnrs = new HashSet<Pnr>(0);
 	private Set<Tour> tours = new HashSet<Tour>(0);
 	private Set<Ticket> tickets = new HashSet<Ticket>(0);
@@ -49,7 +54,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public User(String userName, String userPassword, String fullName,
-			String disable, Date recordDate, Set<UserRole> userRoles, Set<Pax> tourPaxes,
+			String disable, Date recordDate, Set<Role> userRoles, Set<TourPax> tourPaxes,
 			Set<Pnr> pnrs, Set<Tour> tours, Set<Ticket> tickets) {
 		this.userName = userName;
 		this.userPassword = userPassword;
@@ -120,21 +125,24 @@ public class User implements java.io.Serializable {
 		this.recordDate = recordDate;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserRole> getUserRoles() {
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="user_role",
+            joinColumns={@JoinColumn(name="user_id")}, 
+            inverseJoinColumns={@JoinColumn(name="role_code")})
+	public Set<Role> getUserRoles() {
 		return this.userRoles;
 	}
 
-	public void setUserRoles(Set<UserRole> userRoles) {
+	public void setUserRoles(Set<Role> userRoles) {
 		this.userRoles = userRoles;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Pax> getTourPaxes() {
+	public Set<TourPax> getTourPaxes() {
 		return this.tourPaxes;
 	}
 
-	public void setTourPaxes(Set<Pax> tourPaxes) {
+	public void setTourPaxes(Set<TourPax> tourPaxes) {
 		this.tourPaxes = tourPaxes;
 	}
 

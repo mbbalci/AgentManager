@@ -21,6 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "guide", catalog = "tam")
 public class Guide implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private ContactInfo contactInfo;
@@ -29,7 +30,7 @@ public class Guide implements java.io.Serializable {
 	private int kokartNo;
 	private double fare;
 	private String currency;
-	private Set tours = new HashSet(0);
+	private Set<Tour> tours = new HashSet<Tour>(0);
 
 	public Guide() {
 	}
@@ -44,7 +45,7 @@ public class Guide implements java.io.Serializable {
 	}
 
 	public Guide(ContactInfo contactInfo, String name, String surname,
-			int kokartNo, double fare, String currency, Set tours) {
+			int kokartNo, double fare, String currency, Set<Tour> tours) {
 		this.contactInfo = contactInfo;
 		this.name = name;
 		this.surname = surname;
@@ -121,11 +122,11 @@ public class Guide implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "guide")
-	public Set getTours() {
+	public Set<Tour> getTours() {
 		return this.tours;
 	}
 
-	public void setTours(Set tours) {
+	public void setTours(Set<Tour> tours) {
 		this.tours = tours;
 	}
 

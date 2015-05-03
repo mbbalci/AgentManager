@@ -21,13 +21,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "museum", catalog = "tam")
 public class Museum implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private City city;
 	private String name;
 	private int fareId;
-	private Set museumFares = new HashSet(0);
-	private Set tours = new HashSet(0);
+	private Set<MuseumFare> museumFares = new HashSet<MuseumFare>(0);
+	private Set<Tour> tours = new HashSet<Tour>(0);
 
 	public Museum() {
 	}
@@ -38,7 +39,7 @@ public class Museum implements java.io.Serializable {
 		this.fareId = fareId;
 	}
 
-	public Museum(City city, String name, int fareId, Set museumFares, Set tours) {
+	public Museum(City city, String name, int fareId, Set<MuseumFare> museumFares, Set<Tour> tours) {
 		this.city = city;
 		this.name = name;
 		this.fareId = fareId;
@@ -86,20 +87,20 @@ public class Museum implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "museum")
-	public Set getMuseumFares() {
+	public Set<MuseumFare> getMuseumFares() {
 		return this.museumFares;
 	}
 
-	public void setMuseumFares(Set museumFares) {
+	public void setMuseumFares(Set<MuseumFare> museumFares) {
 		this.museumFares = museumFares;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "museum")
-	public Set getTours() {
+	public Set<Tour> getTours() {
 		return this.tours;
 	}
 
-	public void setTours(Set tours) {
+	public void setTours(Set<Tour> tours) {
 		this.tours = tours;
 	}
 

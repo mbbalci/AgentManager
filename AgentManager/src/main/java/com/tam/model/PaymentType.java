@@ -17,10 +17,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "payment_type", catalog = "tam")
 public class PaymentType implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String code;
 	private String explanation;
-	private Set tickets = new HashSet(0);
+	private Set<Ticket> tickets = new HashSet<Ticket>(0);
 
 	public PaymentType() {
 	}
@@ -29,7 +30,7 @@ public class PaymentType implements java.io.Serializable {
 		this.code = code;
 	}
 
-	public PaymentType(String code, String explanation, Set tickets) {
+	public PaymentType(String code, String explanation, Set<Ticket> tickets) {
 		this.code = code;
 		this.explanation = explanation;
 		this.tickets = tickets;
@@ -55,11 +56,11 @@ public class PaymentType implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "paymentType")
-	public Set getTickets() {
+	public Set<Ticket> getTickets() {
 		return this.tickets;
 	}
 
-	public void setTickets(Set tickets) {
+	public void setTickets(Set<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 

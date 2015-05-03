@@ -19,13 +19,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "restorant", catalog = "tam")
 public class Restorant implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String name;
 	private String adsress;
 	private String phone;
 	private String email;
-	private Set tourRestorants = new HashSet(0);
+	private Set<TourRestorant> tourRestorants = new HashSet<TourRestorant>(0);
 
 	public Restorant() {
 	}
@@ -35,7 +36,7 @@ public class Restorant implements java.io.Serializable {
 	}
 
 	public Restorant(String name, String adsress, String phone, String email,
-			Set tourRestorants) {
+			Set<TourRestorant> tourRestorants) {
 		this.name = name;
 		this.adsress = adsress;
 		this.phone = phone;
@@ -91,11 +92,11 @@ public class Restorant implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restorant")
-	public Set getTourRestorants() {
+	public Set<TourRestorant> getTourRestorants() {
 		return this.tourRestorants;
 	}
 
-	public void setTourRestorants(Set tourRestorants) {
+	public void setTourRestorants(Set<TourRestorant> tourRestorants) {
 		this.tourRestorants = tourRestorants;
 	}
 

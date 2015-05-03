@@ -18,6 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "auction_item", catalog = "tam")
 public class AuctionItem implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Auction auction;

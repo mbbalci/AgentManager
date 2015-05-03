@@ -19,10 +19,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "process", catalog = "tam")
 public class Process implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String code;
 	private String explanation;
-	private Set roles = new HashSet(0);
+	private Set<Role> roles = new HashSet<Role>(0);
 
 	public Process() {
 	}
@@ -31,7 +32,7 @@ public class Process implements java.io.Serializable {
 		this.code = code;
 	}
 
-	public Process(String code, String explanation, Set roles) {
+	public Process(String code, String explanation, Set<Role> roles) {
 		this.code = code;
 		this.explanation = explanation;
 		this.roles = roles;
@@ -58,11 +59,11 @@ public class Process implements java.io.Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "role_process", catalog = "tam", joinColumns = { @JoinColumn(name = "process_code", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "role_code", nullable = false, updatable = false) })
-	public Set getRoles() {
+	public Set<Role> getRoles() {
 		return this.roles;
 	}
 
-	public void setRoles(Set roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 

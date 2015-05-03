@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "room_type", catalog = "tam")
 public class RoomType implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String roomTypeCode;
 	private String explanation;

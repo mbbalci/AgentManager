@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "auction_payment", catalog = "tam")
 public class AuctionPayment implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Auction auction;

@@ -19,12 +19,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "port", catalog = "tam")
 public class Port implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String code;
 	private City city;
 	private String name;
-	private Set segmentsForDepPort = new HashSet(0);
-	private Set segmentsForArrPort = new HashSet(0);
+	private Set<Segment> segmentsForDepPort = new HashSet<Segment>(0);
+	private Set<Segment> segmentsForArrPort = new HashSet<Segment>(0);
 
 	public Port() {
 	}
@@ -35,8 +36,8 @@ public class Port implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Port(String code, City city, String name, Set segmentsForDepPort,
-			Set segmentsForArrPort) {
+	public Port(String code, City city, String name, Set<Segment> segmentsForDepPort,
+			Set<Segment> segmentsForArrPort) {
 		this.code = code;
 		this.city = city;
 		this.name = name;
@@ -74,20 +75,20 @@ public class Port implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "portByDepPort")
-	public Set getSegmentsForDepPort() {
+	public Set<Segment> getSegmentsForDepPort() {
 		return this.segmentsForDepPort;
 	}
 
-	public void setSegmentsForDepPort(Set segmentsForDepPort) {
+	public void setSegmentsForDepPort(Set<Segment> segmentsForDepPort) {
 		this.segmentsForDepPort = segmentsForDepPort;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "portByArrPort")
-	public Set getSegmentsForArrPort() {
+	public Set<Segment> getSegmentsForArrPort() {
 		return this.segmentsForArrPort;
 	}
 
-	public void setSegmentsForArrPort(Set segmentsForArrPort) {
+	public void setSegmentsForArrPort(Set<Segment> segmentsForArrPort) {
 		this.segmentsForArrPort = segmentsForArrPort;
 	}
 

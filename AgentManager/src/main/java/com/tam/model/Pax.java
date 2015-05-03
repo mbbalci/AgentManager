@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "pax", catalog = "tam")
 public class Pax implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private ContactInfo contactInfo;
@@ -35,9 +36,9 @@ public class Pax implements java.io.Serializable {
 	private Integer identificationNumber;
 	private String company;
 	private Date recordDate;
-	private Set tickets = new HashSet(0);
-	private Set tourPaxes = new HashSet(0);
-	private Set hotelReservations = new HashSet(0);
+	private Set<Ticket> tickets = new HashSet<Ticket>(0);
+	private Set<TourPax> tourPaxes = new HashSet<TourPax>(0);
+	private Set<HotelReservation> hotelReservations = new HashSet<HotelReservation>(0);
 
 	public Pax() {
 	}
@@ -50,8 +51,8 @@ public class Pax implements java.io.Serializable {
 
 	public Pax(ContactInfo contactInfo, Pnr pnr, String name, String surname,
 			Date birthdate, String passportNo, Integer identificationNumber,
-			String company, Date recordDate, Set tickets, Set tourPaxes,
-			Set hotelReservations) {
+			String company, Date recordDate, Set<Ticket> tickets, Set<TourPax> tourPaxes,
+			Set<HotelReservation> hotelReservations) {
 		this.contactInfo = contactInfo;
 		this.pnr = pnr;
 		this.name = name;
@@ -163,29 +164,29 @@ public class Pax implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pax")
-	public Set getTickets() {
+	public Set<Ticket> getTickets() {
 		return this.tickets;
 	}
 
-	public void setTickets(Set tickets) {
+	public void setTickets(Set<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pax")
-	public Set getTourPaxes() {
+	public Set<TourPax> getTourPaxes() {
 		return this.tourPaxes;
 	}
 
-	public void setTourPaxes(Set tourPaxes) {
+	public void setTourPaxes(Set<TourPax> tourPaxes) {
 		this.tourPaxes = tourPaxes;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pax")
-	public Set getHotelReservations() {
+	public Set<HotelReservation> getHotelReservations() {
 		return this.hotelReservations;
 	}
 
-	public void setHotelReservations(Set hotelReservations) {
+	public void setHotelReservations(Set<HotelReservation> hotelReservations) {
 		this.hotelReservations = hotelReservations;
 	}
 

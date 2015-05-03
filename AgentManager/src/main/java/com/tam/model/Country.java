@@ -17,11 +17,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "country", catalog = "tam")
 public class Country implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String code;
 	private String name;
-	private Set regions = new HashSet(0);
-	private Set cities = new HashSet(0);
+	private Set<Region> regions = new HashSet<Region>(0);
+	private Set<City> cities = new HashSet<City>(0);
 
 	public Country() {
 	}
@@ -31,7 +32,7 @@ public class Country implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Country(String code, String name, Set regions, Set cities) {
+	public Country(String code, String name, Set<Region> regions, Set<City> cities) {
 		this.code = code;
 		this.name = name;
 		this.regions = regions;
@@ -58,20 +59,20 @@ public class Country implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
-	public Set getRegions() {
+	public Set<Region> getRegions() {
 		return this.regions;
 	}
 
-	public void setRegions(Set regions) {
+	public void setRegions(Set<Region> regions) {
 		this.regions = regions;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
-	public Set getCities() {
+	public Set<City> getCities() {
 		return this.cities;
 	}
 
-	public void setCities(Set cities) {
+	public void setCities(Set<City> cities) {
 		this.cities = cities;
 	}
 

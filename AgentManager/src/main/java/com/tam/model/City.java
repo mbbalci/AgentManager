@@ -19,14 +19,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "city", catalog = "tam")
 public class City implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String code;
 	private Region region;
 	private Country country;
 	private String name;
-	private Set hotels = new HashSet(0);
-	private Set ports = new HashSet(0);
-	private Set museums = new HashSet(0);
+	private Set<Hotel> hotels = new HashSet<Hotel>(0);
+	private Set<Port> ports = new HashSet<Port>(0);
+	private Set<Museum> museums = new HashSet<Museum>(0);
 
 	public City() {
 	}
@@ -39,7 +40,7 @@ public class City implements java.io.Serializable {
 	}
 
 	public City(String code, Region region, Country country, String name,
-			Set hotels, Set ports, Set museums) {
+			Set<Hotel> hotels, Set<Port> ports, Set<Museum> museums) {
 		this.code = code;
 		this.region = region;
 		this.country = country;
@@ -89,29 +90,29 @@ public class City implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
-	public Set getHotels() {
+	public Set<Hotel> getHotels() {
 		return this.hotels;
 	}
 
-	public void setHotels(Set hotels) {
+	public void setHotels(Set<Hotel> hotels) {
 		this.hotels = hotels;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
-	public Set getPorts() {
+	public Set<Port> getPorts() {
 		return this.ports;
 	}
 
-	public void setPorts(Set ports) {
+	public void setPorts(Set<Port> ports) {
 		this.ports = ports;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
-	public Set getMuseums() {
+	public Set<Museum> getMuseums() {
 		return this.museums;
 	}
 
-	public void setMuseums(Set museums) {
+	public void setMuseums(Set<Museum> museums) {
 		this.museums = museums;
 	}
 

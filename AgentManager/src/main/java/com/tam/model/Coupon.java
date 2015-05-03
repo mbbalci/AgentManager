@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "coupon", catalog = "tam")
 public class Coupon implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Segment segment;

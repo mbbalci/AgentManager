@@ -1,15 +1,12 @@
 package com.tam.model;
 
-// Generated Mar 29, 2015 10:00:22 PM by Hibernate Tools 4.0.0
+// Generated Apr 27, 2015 8:47:45 AM by Hibernate Tools 4.0.0
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,16 +18,12 @@ public class UserRole implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private UserRoleId id;
-	private User user;
-	private Role role;
 
 	public UserRole() {
 	}
 
-	public UserRole(UserRoleId id, User user, Role role) {
+	public UserRole(UserRoleId id) {
 		this.id = id;
-		this.user = user;
-		this.role = role;
 	}
 
 	@EmbeddedId
@@ -43,26 +36,6 @@ public class UserRole implements java.io.Serializable {
 
 	public void setId(UserRoleId id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
-	public User getUser() {
-		return this.user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_code", nullable = false, insertable = false, updatable = false)
-	public Role getRole() {
-		return this.role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
 	}
 
 }
