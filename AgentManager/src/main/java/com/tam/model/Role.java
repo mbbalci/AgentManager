@@ -22,7 +22,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name = "role", catalog = "tam")
-@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="reference")
+//@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="reference")
 public class Role implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 

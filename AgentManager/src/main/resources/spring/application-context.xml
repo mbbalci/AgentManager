@@ -9,6 +9,7 @@
 
 	<tx:annotation-driven />
 	<context:annotation-config />
+<!-- 	<context:component-scan base-package="com.tam.doa,com.tam.doa.impl,com.tam.model,com.tam.service,com.tam.service.impl,com.tam.web.beans,com.tam.web.util" /> -->
 	<context:component-scan base-package="com.tam" />
 
 	<context:property-placeholder location="classpath:application.properties" />
@@ -49,6 +50,15 @@
 
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:log4j.properties</value>
+            </list>
+        </property>
+    </bean>
 
 
 </beans>

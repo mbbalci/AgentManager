@@ -1,5 +1,7 @@
 package com.tam.service.impl;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +12,14 @@ import com.tam.model.User;
 import com.tam.model.Process;
 import com.tam.service.UserService;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
 	
 	@Override
+	@Transactional
 	public User loginUser(String userName, String password) throws Exception{
 		User user;
 		user = userDao.getUser(userName);
@@ -42,6 +45,10 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return result;
+	}
+	
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 
 }

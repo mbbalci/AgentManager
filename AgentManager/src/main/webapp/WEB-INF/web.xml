@@ -27,9 +27,10 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring/application-context.xml</param-value>
 	</context-param>
-
+	
+	
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>Login.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
@@ -55,8 +56,9 @@
 	</listener>
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>	
+	<listener>
+    	<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
-
-
 
 </web-app>

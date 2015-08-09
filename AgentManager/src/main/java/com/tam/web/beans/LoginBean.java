@@ -7,9 +7,11 @@ import javax.faces.bean.RequestScoped;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.tam.model.User;
 import com.tam.service.UserService;
+
 
 @ManagedBean
 @RequestScoped
@@ -22,10 +24,9 @@ public class LoginBean {
 	@ManagedProperty("#{sessionBean}")
     private SessionBean sessionBean;
 	
-	@Autowired
+	@ManagedProperty("#{userService}")
 	UserService userService;
-	
-	
+
 	@PostConstruct
 	private void postConstruct() {
 		userName = "";
@@ -74,5 +75,9 @@ public class LoginBean {
 
 	public void setSessionBean(SessionBean sessionBean) {
 		this.sessionBean = sessionBean;
+	}
+	
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }
