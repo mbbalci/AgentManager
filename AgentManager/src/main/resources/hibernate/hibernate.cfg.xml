@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.password">!1Mb12Db*</property>
+        <property name="hibernate.connection.password">tam</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tam</property>
-        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.username">tam</property>
     </session-factory>
 </hibernate-configuration>
