@@ -5,16 +5,14 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tam.dao.UserDao;
 import com.tam.model.User;
 
 @Repository("userDao")
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl extends GenericDaoImpl<User, Integer> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@Override
 	public User getUser(String userName) {
 		Query query = sessionFactory.getCurrentSession().createQuery("from User where userName = :username ");
 		query.setParameter("username", userName);
@@ -22,12 +20,10 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 	
-	@Override
 	public void addUser(User user) {
-		sessionFactory.getCurrentSession().save(user); 
+		sessionFactory.getCurrentSession().persist(user); 
 	}
 	
-	@Override
 	public void updateUser(User user) {
 		sessionFactory.getCurrentSession().update(user); 
 	}

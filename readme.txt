@@ -5,4 +5,3 @@ Proje Setup Adimlari :
 3- add spring plug-in
 4- add hibernate plug-in (eclipse hibernate tools eklentisi icin : JBoss Tools - Latest Stable Release	http://download.jboss.org/jbosstools/updates/stable/)
 5- file -> import -> git (https://github.com/mbbalci/AgentManager)
-
