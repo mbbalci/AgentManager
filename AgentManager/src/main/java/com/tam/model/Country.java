@@ -1,6 +1,5 @@
 package com.tam.model;
-
-// Generated Apr 26, 2015 5:10:28 PM by Hibernate Tools 4.0.0
+// Generated Oct 26, 2016 12:52:47 AM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,12 +16,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "country", catalog = "tam")
 public class Country implements java.io.Serializable {
-	private static final long serialVersionUID = 1L;
 
 	private String code;
 	private String name;
-	private Set<Region> regions = new HashSet<Region>(0);
 	private Set<City> cities = new HashSet<City>(0);
+	private Set<Region> regions = new HashSet<Region>(0);
 
 	public Country() {
 	}
@@ -32,14 +30,15 @@ public class Country implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Country(String code, String name, Set<Region> regions, Set<City> cities) {
+	public Country(String code, String name, Set<City> cities, Set<Region> regions) {
 		this.code = code;
 		this.name = name;
-		this.regions = regions;
 		this.cities = cities;
+		this.regions = regions;
 	}
 
 	@Id
+
 	@Column(name = "code", unique = true, nullable = false, length = 2)
 	public String getCode() {
 		return this.code;
@@ -59,21 +58,21 @@ public class Country implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
-	public Set<Region> getRegions() {
-		return this.regions;
-	}
-
-	public void setRegions(Set<Region> regions) {
-		this.regions = regions;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
 	public Set<City> getCities() {
 		return this.cities;
 	}
 
 	public void setCities(Set<City> cities) {
 		this.cities = cities;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
+	public Set<Region> getRegions() {
+		return this.regions;
+	}
+
+	public void setRegions(Set<Region> regions) {
+		this.regions = regions;
 	}
 
 }
