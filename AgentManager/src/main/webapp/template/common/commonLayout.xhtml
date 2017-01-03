@@ -1,0 +1,66 @@
+<html xmlns		="http://www.w3.org/1999/xhtml"
+      xmlns:h	="http://java.sun.com/jsf/html"
+      xmlns:f	="http://java.sun.com/jsf/core"
+      xmlns:ui	="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p	="http://primefaces.org/ui">
+
+    <h:head>
+    <ui:define name="htmlhead">
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title> Hitit Computer Service </title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+        <!-- Place favicon.ico in the root directory -->
+        <!-- Theme initialization -->
+        </ui:define>
+    </h:head>
+    
+    <h:body>
+    <h:outputStylesheet library="css" name="vendor.css"/>
+    <h:outputStylesheet library="css" name="app.css"/>
+    <h:outputStylesheet library="css" name="datepicker.css"/>
+
+	        <div class="main-wrapper">
+            <div class="app" id="app">
+		
+		
+			<ui:insert name="header" >
+				<ui:include src="/template/common/commonHeader.xhtml" />
+			</ui:insert>
+			
+			<ui:insert name="menu" >
+				<ui:include src="/template/common/commonMenu.xhtml" />
+			</ui:insert>			
+	   
+	    
+      <div class="sidebar-overlay" id="sidebar-overlay"></div>
+      <article class="content dashboard-page">
+		   	<ui:insert name="content" >
+		   		<ui:include src="/template/common/commonContent.xhtml" />
+		   	</ui:insert>
+	   </article>
+		    
+	  
+	    	<ui:insert name="footer" >
+	    		<ui:include src="/template/common/commonFooter.xhtml" />
+	    	</ui:insert>
+    	
+    	
+            </div>
+        </div>
+            <!-- Reference block for JS -->
+        <div class="ref" id="ref">
+            <div class="color-primary"></div>
+            <div class="chart">
+                <div class="color-primary"></div>
+                <div class="color-secondary"></div>
+            </div>
+        </div>
+        <h:outputScript library="js" name="vendor.js" />
+        <h:outputScript library="js" name="bootstrap-datepicker.js" />          
+        <h:outputScript library="js" name="app.js" />
+    </h:body>
+
+</html>

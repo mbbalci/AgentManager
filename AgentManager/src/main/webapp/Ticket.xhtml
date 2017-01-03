@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns		="http://www.w3.org/1999/xhtml"
+      xmlns:h	="http://java.sun.com/jsf/html"
+      xmlns:f	="http://java.sun.com/jsf/core"
+      xmlns:ui	="http://java.sun.com/jsf/facelets"
+      xmlns:p	="http://primefaces.org/ui">
+    
+    <h:head>        
+        <title>Allotment Manager</title>		
+    </h:head>
+    <h:body style="background-color:#E3E3E3">    
+        <h:form> 
+		    <div>
+		    	<div>	            
+	            	<div>	            
+	            		<div>
+	            		
+								 	
+							                <h:outputLabel value="Adi"/>
+					            			<h:inputText style="width:138px" value="#{ticketBean.pax.name}"/>
+					            			<h:outputLabel value="Soyadi"/>
+					            			<h:inputText style="width:138px" value="#{ticketBean.pax.surname}"/>
+					            			<h:outputLabel value="Bilet Numarasi"/>
+					            			<h:inputText style="width:138px" value="#{ticketBean.ticket.tktNo}"/>
+<!-- 					            			<h:outputLabel value="Gidis Tarihi"/> -->
+<!-- 					            			<h:inputText style="width:100px" value="#{ticketBean.ticket.dos}"/> -->
+					            			<h:outputLabel value="E-posta"/>
+					            			<h:inputText style="width:138px" value="#{ticketBean.contactinfo.email}"/>
+					            			<h:outputLabel value="Telefon"/>
+					            			<h:inputText style="width:138px" value="#{ticketBean.contactinfo.mobile}"/>
+					            			<h:outputLabel value="Alis"/>
+					            			<h:inputText style="width:138px" value="#{ticketBean.ticket.buyingAmount}"/>
+					            			<h:outputLabel value="Satis"/>
+					            			<h:inputText style="width:138px" value="#{ticketBean.ticket.sellingAmount}"/>
+					            		            
+								 
+							
+								<h:commandButton action="#{ticketBean.saveTicket}" value="Save"></h:commandButton>
+	            		</div>	     		
+	            		<div>
+	            			
+	            		</div>
+		            </div>	            
+		                 
+	            </div>		       
+			</div>			
+        </h:form>
+    </h:body>    
+</html>

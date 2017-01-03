@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns		="http://www.w3.org/1999/xhtml"
+      xmlns:h	="http://java.sun.com/jsf/html"
+      xmlns:f	="http://java.sun.com/jsf/core"
+      xmlns:ui	="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p	="http://primefaces.org/ui">
+    <h:body>
+    	
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+
+    	
+    		<ui:define name="content">
+    			                     <div class="title-block">
+                       
+                        <h:form >
+                        <h:outputLabel styleClass="btn btn-oval btn-success" value="Kayıt Başarılı" rendered="#{'Kayıt Başarılı' == 'Kayıt Başarılı'}" />
+                        </h:form>
+
+						
+                    </div>
+
+                    <section class="section">
+                        <div class="row sameheight-container">
+
+                            <div class="col-md-6">
+                                <div class="card card-block sameheight-item">
+								                                    <div class="title-block">
+                                        <h3 class="title">
+						Rezervasyon Sahibinin;
+					</h3> </div>
+
+                                    <h:form role="form" id="form">
+                                        <div class="form-group has-success">    
+                                         <div class="row form-group">
+                           				   <div class="col-xs-6">
+                                        </div>
+                                        <div class="col-xs-6">
+                                        <p:calendar  id="rezTarih" pt:placeholder="Rezervasyon Tarihi"  value="#{ticketBean.ticket.dos}" styleClass="form-control underlined" />
+                                                  </div>
+                                                  </div>                        
+                                        <h:outputLabel styleClass="control-label" for="Ad" value="Adı Soyadı:" />
+                                          <div class="row form-group">
+                           				   <div class="col-xs-6">
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="Ad" 
+                            			  id="Ad"  
+                            			  pt:placeholder="Adınız" 
+                            			  value="#{ticketBean.pax.name}" 
+                            			  requiredMessage="Lütfen Adınızı Soyadınızı Giriniz"
+                            			  required="true" />
+                            			  </div>
+                            			  <div class="col-xs-6">
+                            			   <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="Soyad" 
+                            			  id="Soyad"  
+                            			  pt:placeholder="Soyadınız" 
+                            			  value="#{ticketBean.pax.surname}" 
+                            			  requiredMessage="Lütfen Adınızı Soyadınızı Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="Soyad"/>
+                           				 </span>
+                           				 </div>
+                           				 </div>
+                                         <h:outputLabel styleClass="control-label" for="rezNo" value="Rezervasyon Numarası:" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="rezNo" 
+                            			  id="rezNo"  
+                            			  pt:placeholder="Rezervasyon numaranız" 
+                            			  value="#{ticketBean.ticket.tktNo}" 
+                            			  requiredMessage="Lütfen Rezervasyon Numaranızı Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="rezNo"/>
+                           				 </span> 
+                                         <h:outputLabel styleClass="control-label"  for="git" value="Giriş Çıkış Tarihi:" />
+                           				  <div class="row form-group">
+                           				   <div class="col-xs-6">
+    								    <p:calendar  id="git" pt:placeholder="Giriş tarihiniz"  value="#{ticketBean.ticket.dos}" styleClass="form-control underlined" />
+    								   </div>
+    								   <div class="col-xs-6">
+    								    <p:calendar id="gel" pt:placeholder="Çıkış tarihiniz"  value="#{ticketBean.ticket.dor}"  styleClass="form-control underlined" />	                           				 
+                           				 </div>
+                           				  </div>				    
+                                        <h:outputLabel styleClass="control-label" for="otel" value="Otel Adı: " />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="otel" 
+                            			  id="otel"  
+                            			  pt:placeholder="Otel Adınız" 
+                            			  value="#{ticketBean.contactinfo.email}" 
+                            			  requiredMessage="Lütfen Otel Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="otel"/>
+                           				 </span>  
+                                          <h:outputLabel styleClass="control-label" for="eposta" value="E-posta: " />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="eposta" 
+                            			  id="eposta"  
+                            			  pt:placeholder="E-posta numaranız" 
+                            			  value="#{ticketBean.contactinfo.mobile}" 
+                            			  requiredMessage="Lütfen E-posta Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="eposta"/>
+                           				 </span>  
+                                        <h:outputLabel styleClass="control-label" for="eposta" value="Telefon:  " />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="telefon" 
+                            			  id="telefon"  
+                            			  pt:placeholder="Telefon numaranız" 
+                            			  value="#{ticketBean.contactinfo.mobile}" 
+                            			  requiredMessage="Lütfen Telefon Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="telefon"/>
+                           				 </span>                          				 
+                                          <h:outputLabel styleClass="control-label" for="alis" value="Alış" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="alis" 
+                            			  id="alis"  
+                            			  pt:placeholder="Alış Fiyatı" 
+                            			  value="#{ticketBean.ticket.buyingAmount}" 
+                            			  requiredMessage="Lütfen Alış Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="alis"/>
+                           				 </span>  
+                                         <h:outputLabel styleClass="control-label" for="satis" value="Satış" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="satis" 
+                            			  id="satis"  
+                            			  pt:placeholder="Satış fiyatı" 
+                            			  value="#{ticketBean.ticket.sellingAmount}" 
+                            			  requiredMessage="Lütfen Satış Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="satis"/>
+                           				 </span> 
+                                      <h:outputLabel styleClass="control-label" for="odeme" value="Ödeme Türü: " />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="odeme" 
+                            			  id="odeme"  
+                            			  pt:placeholder="ödeme türünüz" 
+                            			  value="#{ticketBean.ticket.sellingAmount}" 
+                            			  requiredMessage="Lütfen Satış Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="odeme"/>
+                           				 </span> 
+                                      <h:outputLabel styleClass="control-label" for="oda" value="Oda Sayısı:  " />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="oda" 
+                            			  id="oda"  
+                            			  pt:placeholder="Oda sayınız" 
+                            			  value="#{ticketBean.ticket.sellingAmount}" 
+                            			  requiredMessage="Lütfen Oda Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="oda"/>
+                           				 </span>
+                           				 <fieldset class="form-group">
+                           				 <h:outputLabel styleClass="control-label" for="iptal" value="İptal Nedeni: " />  
+                           				 <h:inputTextarea styleClass="form-control"  value="#{user.address}" rows="3" />
+                           				 </fieldset>   
+                            			 <fieldset class="form-group">
+                           				 <h:outputLabel styleClass="control-label" for="not" value="Not:  " />  
+                           				 <h:inputTextarea styleClass="form-control"  value="#{user.address}" rows="3" />
+                           				 </fieldset>                           				                        				                           				                            				                           				                           				                           				                            				                           				                           				                  
+										</div>
+										<div class="form-group"> 
+										   <h:commandButton value="Kaydet" type="submit"
+								 				action="#{ticketBean.saveTicket}" styleClass="btn btn-primary"/>
+										 </div>
+								   </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+    		</ui:define>
+    		
+
+    		
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

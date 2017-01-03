@@ -1,0 +1,383 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns		="http://www.w3.org/1999/xhtml"
+      xmlns:h	="http://java.sun.com/jsf/html"
+      xmlns:f	="http://java.sun.com/jsf/core"
+      xmlns:ui	="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p	="http://primefaces.org/ui">
+
+    <h:head>
+    <ui:define name="htmlhead">
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title> Hitit Computer Service </title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+        <!-- Place favicon.ico in the root directory -->
+        <!-- Theme initialization -->
+        </ui:define>
+    </h:head>
+
+    <h:body>
+     <h:outputStylesheet library="css" name="vendor.css"/>
+     <h:outputStylesheet library="css" name="app.css"/> 
+     <h:outputStylesheet library="css" name="datepicker.css"/>
+       
+        <div class="main-wrapper">
+            <div class="app" id="app">
+                <header class="header">
+                    <div class="header-block header-block-collapse hidden-lg-up"> <button class="collapse-btn" id="sidebar-collapse-btn">
+    			<i class="fa fa-bars"></i>
+    		</button> </div>
+                    <div class="header-block header-block-search hidden-sm-down">
+                        <form role="search">
+                            <div class="input-container"> 
+							> Uçak Bileti | Satın Alma İşlemleri
+                                <div class="underline"></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="header-block header-block-nav">
+                        <ul class="nav-profile">
+                         	<li class="notifications new">
+                                <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
+    			      <span class="counter">3</span>
+    			    </sup> </a>
+                                <div class="dropdown-menu notifications-dropdown-menu">
+                                    <ul class="notifications-container">
+                                        <li>
+                                            <a href="" class="notification-item">
+                                                <div class="img-col">
+                                                    <div class="img" style="background-image: url('#{resource['assets/faces:2.jpg']}')"></div>
+                                                </div>
+                                                <div class="body-col">
+                                                    <p> <span class="accent">İhsan Halıcı</span> pushed new commit: <span class="accent">Fix page load performance issue</span>. </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="notification-item">
+                                                <div class="img-col">
+                                                											
+                                                    <div class="img" style="background-image: url('#{resource['assets/faces:0.jpg']}')">
+                                                    </div>
+                                                </div>
+                                                <div class="body-col">
+                                                    <p> <span class="accent">Gurur Pirana</span> started new task: <span class="accent">Dashboard UI design.</span>. </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="notification-item">
+                                                <div class="img-col">
+                                                    <div class="img" style="background-image: url('#{resource['assets/faces:1.jpg']}')"></div>
+                                                </div>
+                                                <div class="body-col">
+                                                    <p> <span class="accent">Tuncay Demirbaş</span> deployed new version of <span class="accent">NodeJS REST Api V3</span> </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <footer>
+                                        <ul>
+                                            <li> <a href="">
+    			            View All
+    			          </a> </li>
+                                        </ul>
+                                    </footer>
+                                </div>
+                            </li>
+                            <li class="profile dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <div class="img" style="background-image: url('#{resource['assets/faces:1.jpg']}')"> 
+                                    </div> 
+                                    <span class="name">
+    			      Admin
+    			    </span> </a>
+                                <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <a class="dropdown-item" href="#"> <i class="fa fa-user icon"></i> Profile </a>
+                                    <a class="dropdown-item" href="#"> <i class="fa fa-bell icon"></i> Notifications </a>
+                                    <a class="dropdown-item" href="#"> <i class="fa fa-gear icon"></i> Settings </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="loginn.xhtml"> <i class="fa fa-power-off icon"></i> Logout </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <aside class="sidebar">
+                    <div class="sidebar-container">
+                        <div class="sidebar-header">
+                            <div class="brand">
+                                <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div> YGT Medya Travel</div>
+                        </div>
+                        <nav class="menu">
+                            <ul class="nav metismenu" id="sidebar-menu">
+                                <li>
+                                    <a href="index.html"> <i class="fa fa-home"></i> Anasayfa </a>
+                                </li>
+                                <li class="active">
+                                    <a href="ucakBilet.xhtml"> <i class="fa fa-pencil-square-o"></i> Uçak Bileti </a>
+                                </li>								
+                                <li>
+                                    <a href=""> <i class="fa fa-th-large"></i> Items Manager <i class="fa arrow"></i> </a>
+                                    <ul>
+                                        <li> <a href="items-list.html">
+    								Items List
+    							</a> </li>
+                                        <li> <a href="item-editor.html">
+    								Item Editor
+    							</a> </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=""> <i class="fa fa-bar-chart"></i> Charts <i class="fa arrow"></i> </a>
+                                    <ul>
+                                        <li> <a href="charts-flot.html">
+    								Flot Charts
+    							</a> </li>
+                                        <li> <a href="charts-morris.html">
+    								Morris Charts
+    							</a> </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=""> <i class="fa fa-table"></i> Tables <i class="fa arrow"></i> </a>
+                                    <ul>
+                                        <li> <a href="static-tables.html">
+    								Static Tables
+    							</a> </li>
+                                        <li> <a href="responsive-tables.html">
+    								Responsive Tables
+    							</a> </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="forms.html"> <i class="fa fa-pencil-square-o"></i> Forms </a>
+                                </li>
+                                <li>
+                                    <a href=""> <i class="fa fa-desktop"></i> UI Elements <i class="fa arrow"></i> </a>
+                                    <ul>
+                                        <li> <a href="buttons.html">
+    								Buttons
+    							</a> </li>
+                                        <li> <a href="cards.html">
+    								Cards
+    							</a> </li>
+                                        <li> <a href="typography.html">
+    								Typography
+    							</a> </li>
+                                        <li> <a href="icons.html">
+    								Icons
+    							</a> </li>
+                                        <li> <a href="grid.html">
+    								Grid
+    							</a> </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=""> <i class="fa fa-file-text-o"></i> Pages <i class="fa arrow"></i> </a>
+                                    <ul>
+                                        <li> <a href="login.html">
+    								Login
+    							</a> </li>
+                                        <li> <a href="signup.html">
+    								Sign Up
+    							</a> </li>
+                                        <li> <a href="reset.html">
+    								Reset
+    							</a> </li>
+                                        <li> <a href="error-404.html">
+    								Error 404 App
+    							</a> </li>
+                                        <li> <a href="error-404-alt.html">
+    								Error 404 Global
+    							</a> </li>
+                                        <li> <a href="error-500.html">
+    								Error 500 App
+    							</a> </li>
+                                        <li> <a href="error-500-alt.html">
+    								Error 500 Global
+    							</a> </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"> <i class="fa fa-github-alt"></i> HititCS </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+                <div class="sidebar-overlay" id="sidebar-overlay"></div>
+                <article class="content forms-page">
+                    <div class="title-block">
+                        <h3 class="btn btn-oval btn-success">
+							Kayıt Başarıyla Eklenmiştir.
+						</h3>
+                    </div>
+
+                    <section class="section">
+                        <div class="row sameheight-container">
+
+                            <div class="col-md-6">
+                                <div class="card card-block sameheight-item">
+								                                    <div class="title-block">
+                                        <h3 class="title">
+						Rezervasyon Sahibinin;
+					</h3> </div>
+
+                                    <h:form role="form" id="form">
+                                        <div class="form-group has-success">
+                                        <h:outputLabel styleClass="control-label" for="Ad" value="Adı Soyadı:" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="Ad" 
+                            			  id="Ad"  
+                            			  pt:placeholder="Adınız" 
+                            			  value="#{ticketBean.pax.name}" 
+                            			  requiredMessage="Lütfen Adınızı Soyadınızı Giriniz"
+                            			  required="true" />
+                            			   <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="Soyad" 
+                            			  id="Soyad"  
+                            			  pt:placeholder="Soyadınız" 
+                            			  value="#{ticketBean.pax.surname}" 
+                            			  requiredMessage="Lütfen Adınızı Soyadınızı Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="Soyad"/>
+                           				 </span>
+                                         <h:outputLabel styleClass="control-label" for="biletNo" value="Bilet Numarası:" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="biletNo" 
+                            			  id="biletNo"  
+                            			  pt:placeholder="Bilet numaranız" 
+                            			  value="#{ticketBean.ticket.tktNo}" 
+                            			  requiredMessage="Lütfen Bilet Numaranızı Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="biletNo"/>
+                           				 </span> 
+                                         <h:outputLabel styleClass="control-label"  for="git" value="Gidiş Dönüş Tarihi:" />
+                                       
+    								    <p:calendar  id="git" pt:placeholder="Gidiş tarihiniz"  value="#{ticketBean.ticket.dos}" styleClass="form-control underlined" />
+    								     <p:calendar id="gel" pt:placeholder="Dönüş tarihiniz"  value="#{ticketBean.ticket.dor}"  styleClass="form-control underlined" />				    
+                                         <h:outputLabel styleClass="control-label" for="destinasyon" value="Destinasyon:" />
+                                        <h:selectOneMenu type="text" styleClass="form-control underlined" 
+                            			  name="destinasyon" 
+                            			  id="destinasyon"  
+                            			  pt:placeholder="Destinasyonunuz" 
+                            			  requiredMessage="Lütfen Destinasyon Giriniz"
+                            			  required="true" >
+                            			 
+                            			  <f:selectItems value="#{ticketBean.getPort()}" var="c"
+   			 										itemValue="#{c.name}" itemLabel="#{c.name}"/></h:selectOneMenu> 
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="destinasyon"/>
+                           				 </span>
+                                          <h:outputLabel styleClass="control-label" for="eposta" value="E-posta" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="eposta" 
+                            			  id="eposta"  
+                            			  pt:placeholder="E-posta adresiniz" 
+                            			  value="#{ticketBean.contactinfo.email}" 
+                            			  requiredMessage="Lütfen E-posta Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="eposta"/>
+                           				 </span>  
+                                          <h:outputLabel styleClass="control-label" for="telefon" value="Telefon" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="telefon" 
+                            			  id="telefon"  
+                            			  pt:placeholder="Telefon numaranız" 
+                            			  value="#{ticketBean.contactinfo.mobile}" 
+                            			  requiredMessage="Lütfen Telefon Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="telefon"/>
+                           				 </span>  
+                                          <h:outputLabel styleClass="control-label" for="alis" value="Alış" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="alis" 
+                            			  id="alis"  
+                            			  pt:placeholder="Alış Fiyatı" 
+                            			  value="#{ticketBean.ticket.buyingAmount}" 
+                            			  requiredMessage="Lütfen Alış Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="alis"/>
+                           				 </span>  
+                                         <h:outputLabel styleClass="control-label" for="satis" value="Satış" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="satis" 
+                            			  id="satis"  
+                            			  pt:placeholder="Satış fiyatı" 
+                            			  value="#{ticketBean.ticket.sellingAmount}" 
+                            			  requiredMessage="Lütfen Satış Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="satis"/>
+                           				 </span>                            				                           				                           				                           				                            				                           				                           				                  
+										</div>
+										<div class="form-group"> 
+										   <h:commandButton value="Kaydet" type="submit"
+								 				action="#{ticketBean.saveTicket}" styleClass="btn btn-primary"/>
+										 </div>
+								   </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+ 
+            </article>
+            <footer class="footer">
+                <div class="footer-block author">
+                    <ul>
+                        <li>...</li>
+                    </ul>
+                </div>
+            </footer>
+            <!-- /.modal -->
+            <!-- /.modal -->
+        </div>
+        </div>
+        <!-- Reference block for JS -->
+        <div class="ref" id="ref">
+            <div class="color-primary"></div>
+            <div class="chart">
+                <div class="color-primary"></div>
+                <div class="color-secondary"></div>
+            </div>
+        </div>
+       <h:outputScript library="js" name="jquery-1.9.1.min.js" />
+        <h:outputScript library="js" name="vendor.js" />
+        <h:outputScript library="js" name="bootstrap-datepicker.js" />
+        
+        <script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
+                
+                $('#form\\:example1').datepicker({
+                    format: "yyyy/mm/dd",
+                    autoclose: true
+                });  
+            
+            });
+            $(document).ready(function () {
+                
+                $('#form\\:example2').datepicker({
+                    format: "yyyy/mm/dd",
+                    autoclose: true
+                });  
+            
+            });
+        </script>        
+       
+        <h:outputScript library="js" name="app.js" />
+
+    </h:body>
+
+</html>

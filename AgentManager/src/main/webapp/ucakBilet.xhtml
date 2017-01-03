@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns		="http://www.w3.org/1999/xhtml"
+      xmlns:h	="http://java.sun.com/jsf/html"
+      xmlns:f	="http://java.sun.com/jsf/core"
+      xmlns:ui	="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p	="http://primefaces.org/ui">
+    <h:body>
+    	
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+    	
+    		<ui:define name="content">
+    			                     <div class="title-block">
+                       
+                        <h:form >
+                        <h:outputLabel styleClass="btn btn-oval btn-success" value="Kayıt Başarılı" rendered="#{'Kayıt Başarılı' == 'Kayıt Başarılı'}" />
+                        </h:form>
+
+						
+                    </div>
+
+                    <section class="section">
+                        <div class="row sameheight-container">
+
+                            <div class="col-md-8">
+                                <div class="card card-block ">
+								                                    <div class="title-block">
+                                        <h3 class="title">
+						İletişim Bilgileri;
+					</h3> </div>
+
+                                    <h:form role="form" id="form">
+                                        <div class="form-group has-success">
+                                        <div class="row form-group">
+                                        <div class="col-md-4">
+                                    <h:outputLabel styleClass="control-label" for="pnr" value="PNR Numarası:" />
+                            			   <h:inputText   type="text" styleClass="form-control underlined" 
+                            			  name="pnr" 
+                            			  id="pnr"  
+                            			  pt:placeholder="Pnr numaranız" 
+                            			  value="#{ticketBean.pnr.pnrNo}" 
+                            			  requiredMessage="Lütfen PNR no Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="pnr"/>
+                           				 </span> </div> </div>
+                           				 <div class="row form-group">
+                           				 <div class="col-md-6">
+                           				  <h:outputLabel styleClass="control-label" for="eposta" value="E-posta" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="eposta" 
+                            			  id="eposta"  
+                            			  pt:placeholder="E-posta adresiniz" 
+                            			  value="#{ticketBean.contactinfo.email}" 
+                            			  requiredMessage="Lütfen E-posta Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="eposta"/>
+                           				 </span>  </div><div class="col-md-6">
+                                          <h:outputLabel styleClass="control-label" for="telefon" value="Telefon" />
+                                        <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="telefon" 
+                            			  id="telefon"  
+                            			  pt:placeholder="Telefon numaranız" 
+                            			  value="#{ticketBean.contactinfo.mobile}" 
+                            			  requiredMessage="Lütfen Telefon Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="telefon"/>
+                           				 </span>  </div></div>
+                           				 	<h:outputLabel styleClass="control-label" for="address" value="Adres" />
+                           				  <h:inputTextarea rows="2" cols="1" type="text" styleClass="form-control underlined" 
+                            			  name="address" 
+                            			  id="address"  
+                            			  pt:placeholder="Adress Bilgileriniz" 
+                            			  value="#{ticketBean.contactinfo.address}" 
+                            			  requiredMessage="Lütfen Telefon Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="address"/>
+                           				 </span>  
+                           				  <h:outputLabel styleClass="control-label" for="destinasyon" value="Destinasyon:" />
+                                    <div class="row form-group">
+                           			<div class="col-xs-6">
+                           			<h:outputLabel styleClass="control-label" for="destinasyon" value="Nereden" />
+                                    <h:selectOneMenu type="text" styleClass="form-control underlined" 
+                            			  name="gidis" 
+                            			  id="gidis"  
+                            			  pt:placeholder="gidiş" 
+                            			  requiredMessage="Lütfen Destinasyon Giriniz"
+                            			  required="true" >
+                            			 
+                            			  <f:selectItems value="#{ticketBean.getPort()}" var="c"
+   			 										itemValue="#{c.name}" itemLabel="#{c.name}"/>
+   			 						</h:selectOneMenu> 
+                            		<span id="username-error" class="has-error">
+                           				 <h:message for="gidis"/>
+                           			</span>
+                           			 </div>
+                           			  <div class="col-xs-6">
+                           			  <h:outputLabel styleClass="control-label" for="destinasyon" value="Nereye" />
+                                    <h:selectOneMenu type="text" styleClass="form-control underlined" 
+                            			  
+                            			  name="gelis" 
+                            			  id="gelis"  
+                            			  pt:placeholder="Geliş" 
+                            			  requiredMessage="Lütfen Destinasyon Giriniz"
+                            			  required="true" >
+                            			 
+                            			  <f:selectItems value="#{ticketBean.getPort()}" var="c"
+   			 										itemValue="#{c.name}" itemLabel="#{c.name}"/>
+   			 						</h:selectOneMenu> 
+                            		<span id="username-error" class="has-error">
+                           				 <h:message for="gelis"/>
+                           			</span>
+                           			 </div>
+                           			 </div>
+                                         
+                                         <h:outputLabel styleClass="control-label"  for="git" value="Gidiş Dönüş Tarihi:" />
+                           				  <div class="row form-group">
+                           				   <div class="col-xs-6">
+    								    <p:calendar   id="git" pt:placeholder="Gidiş tarihiniz"  value="#{ticketBean.ticket.dos}" styleClass="form-control underlined " />
+    								    
+    								   
+    								   </div>
+    								   <div class="col-xs-6">
+    								    <p:calendar  id="gel" pt:placeholder="Dönüş tarihiniz"  value="#{ticketBean.ticket.dor}"  styleClass="form-control underlined" />	                           				 
+                           				 </div>
+                           				  </div>
+                           				   			
+                           				  <h:outputLabel styleClass="control-label" for="biletNo" value="Yolcu ve Bilet Bilgileri:" />
+                           				  <div class="row form-group">
+                           				  <h:form id="yolcuForm">
+                           				   <div class="col-xs-10">
+                           				   
+    
+    <h:dataTable id="yolcuTablo" value="#{ticketBean.items}" var="item" styleClass="table table-bordered">
+        <h:column><h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="Ad" 
+                            			  id="Ad"  
+                            			  pt:placeholder="Adınız" 
+                            			  value="#{item.pax.name}" 
+                            			  requiredMessage="Lütfen Adınızı Soyadınızı Giriniz"
+                            			  required="true" />
+                            <h:column>  <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="biletNo" 
+                            			  id="biletNo"  
+                            			  pt:placeholder="Bilet No" 
+                            			  value="#{item.ticket.tktNo}" 
+                            			  requiredMessage="Lütfen Bilet Numaranızı Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="biletNo"/>
+                           				 </span> 
+                           				 </h:column>			
+                           				   </h:column>
+        <h:column><h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="Soyad" 
+                            			  id="Soyad"  
+                            			  pt:placeholder="Soyadınız" 
+                            			  value="#{item.pax.surname}" 
+                            			  requiredMessage="Lütfen Adınızı Soyadınızı Giriniz"
+	                            			  required="true" />
+	                            			  <h:column> <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="alis" 
+                            			  id="alis"  
+                            			  pt:placeholder="Alış Fiyatı" 
+                            			   value="#{item.ticket.buyingAmount}"
+                            			  requiredMessage="Lütfen Alış Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="alis"/>
+                           				 </span>  
+	                            			  </h:column></h:column>
+ 		<h:column><h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="Passport" 
+                            			  id="Passport"  
+                            			  pt:placeholder="Passport No" 
+                            			  value="#{item.pax.passportNo}" 
+                            			  requiredMessage="Lütfen Passport No Giriniz"
+                            			  required="true" />
+                            			 <h:column><h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="satis" 
+                            			  id="satis"  
+                            			  pt:placeholder="Satış fiyatı" 
+                            			   value="#{item.ticket.sellingAmount}"
+                            			  requiredMessage="Lütfen Satış Giriniz"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                           				 <h:message for="satis"/>
+                           				 </span> </h:column> </h:column>
+		 <h:column><h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="Dogum" 
+                            			  id="Dogum"  
+                            			  pt:placeholder="Doğum Tarihi" 
+                            			   
+                            			  requiredMessage="Lütfen Doğum Tarihi Giriniz"
+                            			  required="true" /></h:column>
+<!--         <h:column><h:commandButton value="remove" action="#{bean.remove(item)}" /></h:column> -->
+			<h:column><h:commandLink >
+        <f:ajax listener="#{ticketBean.remove(item)}"
+                process="@form" 
+                render="@form" />
+                
+                <i class="fa fa-times" title="Remove"></i>
+    </h:commandLink></h:column>
+    
+    </h:dataTable></div><div class="col-xs-2">
+    <h:commandLink >
+  				 <f:ajax listener="#{ticketBean.add}" execute="@form" render="yolcuTablo" />
+                <i class="fa fa-plus" title="Add New" ><b> Ekle</b></i>
+    </h:commandLink>
+   
+</div></h:form></div>
+                           			                           				                           				                           				                           				                            				                           				                           				                  
+										</div>
+										<div class="form-group"> 
+										   <h:commandButton value="Kaydet" type="submit"
+								 				action="#{ticketBean.saveTicket}" styleClass="btn btn-primary"/>
+										 </div>
+								   </h:form>
+                                </div>
+                            </div>
+                                                        
+                        </div>
+                    </section>
+    		</ui:define>
+
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

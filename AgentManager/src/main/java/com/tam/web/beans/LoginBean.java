@@ -7,10 +7,9 @@ import javax.faces.bean.RequestScoped;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.tam.model.User;
-import com.tam.service.UserService;
+import com.tam.service.UserSrv;
 
 
 @ManagedBean
@@ -19,14 +18,18 @@ public class LoginBean {
 
 	private String userName;
 	private String password;
-	
+	private User user;
 
+	@Autowired
+	@ManagedProperty("#{userSrv}")
+	private UserSrv userServicee;
+	
 	@ManagedProperty("#{sessionBean}")
     private SessionBean sessionBean;
 	
-	@ManagedProperty("#{userService}")
-	UserService userService;
+	
 
+	
 	@PostConstruct
 	private void postConstruct() {
 		userName = "";
@@ -40,12 +43,13 @@ public class LoginBean {
 				sessionBean.setError("LOGIN", "Wrong or missing credentials");
 				return "errorManagement.xhtml?faces-redirect=true";
 			}
-			User user= userService.loginUser(userName,password);
-			sessionBean.setUser(user);
-			return "main.xhtml?faces-redirect=true";
+				user=userServicee.loginUser(userName,password);
+				sessionBean.setUser(user);
+				return "index.jsf?faces-redirect=true";
+		
 		} catch (Exception e) {
 			sessionBean.setError("LOGIN", e.getMessage());
-			return "errorManagement.xhtml?faces-redirect=true";
+			return "errorManagement.jsf?faces-redirect=true";
 		}
 	}
 	
@@ -77,7 +81,20 @@ public class LoginBean {
 		this.sessionBean = sessionBean;
 	}
 	
-	public void setUserService(UserService userService) {
-		this.userService = userService;
+	
+	public User getUser() {
+		return user;
 	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public UserSrv getUserServicee() {
+		return userServicee;
+	}
+	public void setUserServicee(UserSrv userServicee) {
+		this.userServicee = userServicee;
+	}
+
 }

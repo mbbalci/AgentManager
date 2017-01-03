@@ -1,29 +1,27 @@
 package com.tam.service.impl;
 
-import javax.transaction.Transactional;
-
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.tam.dao.UserDao;
+import com.tam.model.Process;
 import com.tam.model.Role;
 import com.tam.model.User;
-import com.tam.model.Process;
+import com.tam.repositories.UserRepository;
 import com.tam.service.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserDao userDao;
+	private UserRepository userDao;
 	
 	@Override
 	@Transactional
 	public User loginUser(String userName, String password) throws Exception{
 		User user;
-		user = userDao.getUser(userName);
-		if (StringUtils.equals(user.getUserPassword(), password)) {
+		user = userDao.findByuserNameAndUserPassword(userName, password);
+		if (user != null) {
 			return user;
 		}else{
 			throw new Exception("Invalid user name or password");

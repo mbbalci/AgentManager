@@ -4,4 +4,6 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="tam"/>
   <table-filter match-name="city"/>
+  <table-filter match-name="region"/>
+  <table-filter match-name="country"/>
 </hibernate-reverse-engineering>
