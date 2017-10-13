@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns		="http://www.w3.org/1999/xhtml"
+      xmlns:h	="http://java.sun.com/jsf/html"
+      xmlns:f	="http://java.sun.com/jsf/core"
+      xmlns:ui	="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p	="http://primefaces.org/ui">
+
+    <h:head>
+    <ui:define name="htmlhead">
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title> Hitit Computer Service </title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+        <!-- Place favicon.ico in the root directory -->
+        <!-- Theme initialization -->
+        </ui:define>
+    </h:head>
+
+    <h:body>
+    <h:outputStylesheet library="css" name="vendor.css"/>
+    <h:outputStylesheet library="css" name="app.css"/>
+        <div class="auth">
+            <div class="auth-container">
+                <div class="card">
+                    <header class="auth-header">
+                        <h1 class="auth-title">
+        <div class="logo">
+        	<span class="l l1"></span>
+        	<span class="l l2"></span>
+        	<span class="l l3"></span>
+        	<span class="l l4"></span>
+        	<span class="l l5"></span>
+        </div>        Agent Manager System
+      </h1> </header>
+                    <div class="auth-content">
+                        <p class="text-xs-center">LOGIN TO CONTINUE</p>
+                        <h:form id="login-form"  novalidate="">
+                            <div class="form-group"> 
+                            <h:outputLabel for="username" value="Username" />
+                            <h:inputText  type="text" styleClass="form-control underlined" 
+                            			  name="username" 
+                            			  id="username"  
+                            			  pt:placeholder="enter the Username" 
+                            			  value="#{loginBean.userName}" 
+                            			  requiredMessage="Please enter username"
+                            			  required="true" />
+                            			  <span id="username-error" class="has-error">
+                            <h:message for="username"/>
+                            </span>
+                            </div>
+                            <div class="form-group"> 
+                             <h:outputLabel for="password" value="Password" />
+                            <h:inputSecret  styleClass="form-control underlined" 
+                            				id="password"  
+                            				pt:placeholder="enter the Password" 
+                            				value="#{loginBean.password}"
+                            				requiredMessage="Please enter password"
+                            				required="true" />
+                             	<span id="username-error" class="has-error">
+                            		<h:message for="password"/>
+                           		</span>                           				
+						</div>
+                           <div class="form-group"> 
+                           <label for="remember"> 
+            <span><h:outputLabel for="password" class="btn btn-pill-right btn-danger" value="Wrong username or password" /></span>
+          </label> 
+		 </div>
+                            <div class="form-group">
+                            <h:commandButton value="Login" type="submit"
+								 action="#{loginBean.login}" styleClass="btn btn-block btn-primary"/>	 
+                             </div>
+                            <div class="form-group">
+                                <p class="text-muted text-xs-center">Do not have an account? <a href="signup.html">Sign Up!</a></p>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="text-xs-center">
+                    <a href="index.html" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> 2016 | August </a>
+                </div>
+            </div>
+        </div>
+        <!-- Reference block for JS -->
+        <div class="ref" id="ref">
+            <div class="color-primary"></div>
+            <div class="chart">
+                <div class="color-primary"></div>
+                <div class="color-secondary"></div>
+            </div>
+        </div>
+        <h:outputScript library="js" name="vendor.js" />
+        <h:outputScript library="js" name="app.js" />
+    </h:body>
+
+</html>

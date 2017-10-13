@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<h:outputStylesheet library="css" name="datepicker.css" />
+	<ui:composition template="/template/common/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="row sameheight-container">
+				<div class="col-md-11">
+					<div class="card card-block">
+						<div class="title-block">
+							<h3 class="title">PNR ile Yolcu Arama:</h3>
+						</div>
+						<h:form role="form" id="pnrArama">
+							<div class="form-group has-success">
+								<div class="row form-group">
+									<div class="col-md-2">
+										<h:outputLabel styleClass="control-label" for="pnr"
+											value="PNR" />
+										<p:inputMask type="text" styleClass="form-control" name="pnr"
+											id="pnr" mask="******" style="text-transform: uppercase"
+											pt:placaeholder="PNR" value="#{searchBean.pnr.pnrNo}">
+											<f:ajax render="pnrArama:pnrAramaTablo" />
+										</p:inputMask>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-lg-2">
+										<h:commandButton id="pnr-ile-ara" value="Pnr arama"
+											action="#{searchBean.searchPaxByPnr()}">
+											<i class="fa fa-check-circle" title="Add New" />
+										</h:commandButton>
+									</div>
+								</div>
+								<div class="row form-group">
+									<h:panelGroup id="tablediv">
+										<ui:fragment rendered="#{searchBean.searchPaxByPnrB}">
+											<div class="col-md-10">
+												<p:dataTable value="#{searchBean.searchPaxByPnr()}" var="o"
+													styleClass="table table-bordered" rows="10"
+													paginator="true"
+													paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+													rowsPerPageTemplate="5,10,15" selectionMode="single"
+													selection="#{searchBean.pax}" rowKey="#{o.id}">
+
+													<p:ajax event="rowSelect"
+														listener="#{searchBean.onRowSelect}" />
+
+
+													<p:column headerText="İsim" sortBy="#{o.name}"
+														filterBy="#{o.name}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header">İsim</f:facet> -->
+														<h:outputText value="#{o.name}" />
+													</p:column>
+													<p:column headerText="Soyisim" sortBy="#{o.surname}"
+														filterBy="#{o.surname}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header">Soyisim</f:facet> -->
+														<h:outputText value="#{o.surname}" />
+													</p:column>
+													<p:column headerText="Company"
+														sortBy="#{o.contactInfo.email}"
+														filterBy="#{o.contactInfo.email}"
+														filterMatchMode="contains">
+														<!-- 												<f:facet name="header">Email</f:facet> -->
+														<h:outputText value="#{o.contactInfo.email}" />
+													</p:column>
+													<p:column headerText="Cep telefonu"
+														sortBy="#{o.contactInfo.mobile}"
+														filterBy="#{o.contactInfo.mobile}"
+														filterMatchMode="contains">
+														<!-- 												<f:facet name="header">Cep telefonu</f:facet> -->
+														<h:outputText value="#{o.contactInfo.mobile}" />
+													</p:column>
+													<p:column headerText="Pnr Türü" sortBy="#{o.pnr.type}"
+														filterBy="#{o.pnr.type}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header">pnr type</f:facet> -->
+														<h:outputText value="#{o.pnr.type}" />
+													</p:column>
+												</p:dataTable>
+											</div>
+										</ui:fragment>
+									</h:panelGroup>
+								</div>
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row sameheight-container">
+				<div class="col-md-11">
+					<div class="card card-block">
+						<div class="title-block">
+							<h3 class="title">Uçuş Arama:</h3>
+						</div>
+						<h:form role="form" id="ucusForm">
+							<div class="form-group has-success">
+								<div class="row form-group">
+
+									<div class="col-xs-2">
+										<p:calendar id="dep1" pt:placeholder="Başlangıç tarihi"
+											pattern="dd/MM/yyyy" mask="true" value="#{searchBean.date1}" />
+									</div>
+									<div class="col-xs-2">
+										<p:calendar id="dep2" pt:placeholder="Başlangıç tarihi"
+											pattern="dd/MM/yyyy" mask="true" value="#{searchBean.date2}" />
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-xs-2">
+										<h:commandButton id="ucus-ara" value="Uçuş Ara"
+											action="#{searchBean.searchPaxesBetweenDates()}">
+											<!-- 											<f:ajax execute="@form" render="ucusTablo1" /> -->
+											<!-- 											<f:ajax render="ucusForm:canceldiv" /> -->
+											<i class="fa fa-check-circle" title="Add New" />
+										</h:commandButton>
+									</div>
+								</div>
+								<div class="row form-group">
+									<h:panelGroup id="canceldiv">
+										<ui:fragment rendered="#{searchBean.searchPaxesBetweenDatesB}">
+											<div class="col-md-10">
+												<p:dataTable id="ucusTablo1"
+													value="#{searchBean.searchPaxesBetweenDates()}" var="s"
+													styleClass="table table-bordered" rows="10"
+													paginator="true"
+													paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+													rowsPerPageTemplate="5,10,15" selectionMode="single"
+													selection="#{searchBean.pax}" rowKey="#{s.id}"
+													widgetVar="dtVar" rowIndexVar="index">
+
+													<p:ajax event="rowSelect"
+														actionListener="#{searchBean.getSelectedRowIndex(index)}"
+														process="@this" />
+
+													<p:ajax event="rowSelect"
+														listener="#{searchBean.onRowSelect}" />
+
+													<p:column headerText="Company" sortBy="#{s.company}"
+														filterBy="#{s.company}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header"></f:facet> -->
+														<h:outputText value="#{s.company}" />
+													</p:column>
+													<p:column headerText="Name" sortBy="#{s.name}"
+														filterBy="#{s.name}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header">Name</f:facet> -->
+														<h:outputText value="#{s.name}" />
+													</p:column>
+													<p:column headerText="Surname" sortBy="#{s.surname}"
+														filterBy="#{s.surname}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header">Surname</f:facet> -->
+														<h:outputText value="#{s.surname}" />
+													</p:column>
+													<p:column headerText="BirthDate" sortBy="#{s.birthdate}"
+														filterBy="#{s.birthdate}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header">BirthDate</f:facet> -->
+														<h:outputText value="#{s.birthdate.toLocaleString()}" />
+													</p:column>
+												</p:dataTable>
+											</div>
+										</ui:fragment>
+									</h:panelGroup>
+								</div>
+							</div>
+						</h:form>
+
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row sameheight-container">
+				<div class="col-md-11">
+					<div class="card card-block">
+						<div class="title-block">
+							<h3 class="title">Uçuş Arama:</h3>
+						</div>
+						<h:form role="form" id="portForm">
+							<div class="form-group has-success">
+								<div class="row form-group">
+									<div class="col-md-2">
+										<p:autoComplete id="kalkisArama" minQueryLength="3"
+											emptyMessage="Havalimanı bulunamadı."
+											placeholder="Kalkış Portu" value="#{searchBean.port1.name}"
+											forceSelection="true" completeMethod="#{searchBean.complete}"
+											required="true">
+											<p:ajax event="keyup" />
+										</p:autoComplete>
+										<span id="username-error" class="has-error"> <h:message
+												for="kalkisArama" />
+										</span>
+									</div>
+
+									<div class="col-md-2">
+										<p:autoComplete id="varisArama" minQueryLength="3"
+											emptyMessage="Havalimanı bulunamadı."
+											placeholder="Varış Portu" value="#{searchBean.port2.name}"
+											forceSelection="true" completeMethod="#{searchBean.complete}"
+											required="true">
+											<f:ajax event="keyup" />
+										</p:autoComplete>
+										<span id="username-error" class="has-error"> <h:message
+												for="varisArama" />
+										</span>
+									</div>
+									<div class="col-xs-2">
+										<p:calendar id="dep_date" pt:placeholder="Başlangıç tarihi"
+											pattern="dd/MM/yyyy" mask="true" value="#{searchBean.date3}" />
+									</div>
+								</div>
+								<h:commandButton id="ucus-ara-port" value="Uçuş Ara"
+									action="#{searchBean.searchPaxesByDepPortAndArrPortAndDepDate()}">
+									<!-- 									<f:ajax execute="@form" render="ucusTablo2 PortaGoreAradiv" /> -->
+									<i class="fa fa-check-circle" title="Add New" />
+								</h:commandButton>
+								<div class="row form-group">
+									<h:panelGroup id="PortaGoreAradiv">
+										<ui:fragment
+											rendered="#{searchBean.searchPaxesByDepPortAndArrPortAndDepDateB}">
+											<div class="col-md-10">
+												<p:dataTable id="ucusTablo2"
+													value="#{searchBean.searchPaxesByDepPortAndArrPortAndDepDate()}"
+													var="s" styleClass="table table-bordered" rows="10"
+													paginator="true"
+													paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+													rowsPerPageTemplate="5,10,15" selectionMode="single"
+													selection="#{searchBean.pax}" rowKey="#{s.id}">
+
+													<p:ajax event="rowSelect"
+														listener="#{searchBean.onRowSelect}" />
+
+
+													<p:column headerText="Company" sortBy="#{s.company}"
+														filterBy="#{s.company}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header"></f:facet> -->
+														<h:outputText value="#{s.company}" />
+													</p:column>
+													<p:column headerText="Name" sortBy="#{s.name}"
+														filterBy="#{s.name}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header">Name</f:facet> -->
+														<h:outputText value="#{s.name}" />
+													</p:column>
+													<p:column headerText="Surname" sortBy="#{s.surname}"
+														filterBy="#{s.surname}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header">Surname</f:facet> -->
+														<h:outputText value="#{s.surname}" />
+													</p:column>
+													<p:column headerText="BirthDate" sortBy="#{s.birthdate}"
+														filterBy="#{s.birthdate}" filterMatchMode="contains">
+														<!-- 												<f:facet name="header">BirthDate</f:facet> -->
+														<h:outputText value="#{s.birthdate.toLocaleString()}" />
+													</p:column>
+												</p:dataTable>
+											</div>
+										</ui:fragment>
+									</h:panelGroup>
+								</div>
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

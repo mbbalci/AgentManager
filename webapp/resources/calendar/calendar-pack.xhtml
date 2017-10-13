@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:hcs="http://www.hititcs.com/jsf/html">
+
+			
+    <ui:composition>
+		<!-- include --><script src="#{messageMap[prefix.concat('_PR_CNF_EXTERNAL_PLUGIN_DIR')]}/calendar/calendar.js" />
+		<!-- include --><script src="#{messageMap[prefix.concat('_PR_CNF_EXTERNAL_PLUGIN_DIR')]}/calendar/calendars/jquery.calendars.js" />
+		<!-- include --><script src="#{messageMap[prefix.concat('_PR_CNF_EXTERNAL_PLUGIN_DIR')]}/calendar/calendars/jquery.calendars.plus.js" />
+		<!-- call --><script src="#{messageMap[prefix.concat('_PR_CNF_EXTERNAL_PLUGIN_DIR')]}/calendar/calendars/jquery.calendars.#{messageMap[prefix.concat('_PR_FRM_CALENDAR_TYPE')].toLowerCase()}.js?vv=#{messageMap[prefix.concat('_PR_CNF_VISUAL_VERSION')]}" />
+		<!-- include --><script src="#{messageMap[prefix.concat('_PR_CNF_EXTERNAL_PLUGIN_DIR')]}/calendar/datepicker/jquery.calendars.picker.js" />
+		
+		<script id="calendarsPickerLocale">
+		
+			var instanceData = #{localeFormatter.instanceData.json};
+		
+			window.dateAutoFormat = function (e) {
+
+				if (e.keyCode != '8') {
+					if (e.target.value.length == 2)
+						e.target.value = e.target.value + "/";
+					if (e.target.value.length == 5)
+						e.target.value = e.target.value + "/";
+				}
+
+			};
+			
+			//<![CDATA[
+			$(function(){
+				
+				$.calendars.calendars.#{messageMap[prefix.concat('_PR_FRM_CALENDAR_TYPE')].toLowerCase()}
+				.prototype.regionalOptions['#{languageBean.selectedLocale.getLanguage()}'] = {
+					name : "#{messageMap[prefix.concat('_PR_FRM_CALENDAR_TYPE')].toLowerCase()}",
+					dayNames :  instanceData.dateFormatSymbols.weekdays.slice(1),
+					dayNamesShort :  instanceData.dateFormatSymbols.shortWeekdays.slice(1),
+					dayNamesMin :  instanceData.dateFormatSymbols.shorterWeekdays.slice(1),
+					monthNames :  instanceData.dateFormatSymbols.months,
+					monthNamesShort :  instanceData.dateFormatSymbols.shortMonths,
+					firstDay :  #{messageMap['ATT_PR_FRM_FIRST_DAY_OF_WEEK']},
+					isRTL :  #{messageMap[prefix.concat('_PR_FRM_PAGE_DIRECTION')] eq 'rtl'},
+					digits :  instanceData.decimalFormatSymbols.digits
+				};
+
+				window.instanceCal = $.calendars.instance("#{messageMap[prefix.concat('_PR_FRM_CALENDAR_TYPE')].toLowerCase()}", '#{languageBean.selectedLocale.getLanguage()}');
+
+				$.calendarsPicker.regionalOptions['#{languageBean.selectedLocale.getLanguage()}'] = {
+					renderer : $.calendarsPicker.defaultRenderer,
+					prevStatus : "#{messageMap['DATEPICKER_PREV_STATUS']}",
+					prevJumpText : "#{messageMap['DATEPICKER_PREV_JUMP_TEXT']}",
+					prevJumpStatus : "#{messageMap['DATEPICKER_PREV_JUMP_STATUS']}",
+					nextStatus : "#{messageMap['DATEPICKER_NEXT_STATUS']}",
+					nextJumpText : "#{messageMap['DATEPICKER_NEXT_JUMP_TEXT']}",
+					nextJumpStatus : "#{messageMap['DATEPICKER_NEXT_JUMP_STATUS']}",
+					currentText : "#{messageMap['DATEPICKER_CURRENT_TEXT']}",
+					currentStatus : "#{messageMap['DATEPICKER_CURRENT_STATUS']}",
+					todayText : "#{messageMap['DATEPICKER_TODAY_TEXT']}",
+					todayStatus : "#{messageMap['DATEPICKER_TODAY_STATUS']}",
+					clearText : "#{messageMap['DATEPICKER_CLEAR_TEXT']}",
+					clearStatus : "#{messageMap['DATEPICKER_CLEAR_STATUS']}",
+					closeText : "#{messageMap['DATEPICKER_CLOSE_TEST']}",
+					closeStatus : "#{messageMap['DATEPICKER_CLOSE_STATUS']}",
+					yearStatus : "#{messageMap['DATEPICKER_YEAR_STATUS']}",
+					monthStatus : "#{messageMap['DATEPICKER_MONTH_STATUS']}",
+					weekText : "#{messageMap['DATEPICKER_WEEK_TEXT']}",
+					weekStatus : "#{messageMap['DATEPICKER_WEEK_STATUS']}",
+					dayStatus : "#{messageMap['DATEPICKER_DAY_STATUS']}",
+					defaultStatus : "#{messageMap['DATEPICKER_DEFAULT_STATUS']}",
+					isRTL :  #{messageMap[prefix.concat('_PR_FRM_PAGE_DIRECTION')] eq 'rtl'}
+				};
+
+					$.calendarsPicker.setDefaults($.calendarsPicker.regionalOptions['#{languageBean.selectedLocale.getLanguage()}']);
+					
+					function renderDatePicker() {
+
+						$("input[type='date']:not(.is-calendarsPicker)").each(function () {
+							var value = $(this).attr("value");
+							var newCal = window.instanceCal;
+							var dateFormat = $(this).attr("format") || 'yyyy-MM-dd';
+							if(navigator.userAgent.indexOf('Mobile') == -1 || dateFormat != 'yyyy-MM-dd'){
+								if(dateFormat != 'yyyy-MM-dd'){
+									$(this).prop('type', 'text');
+								}
+								$(this)
+									.keyup(dateAutoFormat)
+									.calendarsPicker({
+									calendar : newCal,
+									dateFormat: dateFormat,	
+									showOnFocus: true,
+									minDate : $(this).attr("min"),
+									maxDate : $(this).attr("max"),
+									onSelect : function () {
+										$(this).trigger('change');
+									}
+								}).val(value);
+								
+							}
+						});
+
+					}
+					
+					$(window).load(renderDatePicker);
+
+					if (typeof jsf != "undefined")
+						jsf.ajax.addOnEvent(function (e) {
+							if (e.status == "success")
+								renderDatePicker();
+						});
+			});
+			
+		//]]>	
+		</script>
+    </ui:composition>
+
+</html>
