@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f	="http://java.sun.com/jsf/core"
+      >
+         <h:body>
+    	
+<!-- <h:form>
+    <h:form>
+    <h:dataTable value="#{bean.items}" var="item">
+        <h:column><h:inputText value="#{item}" /></h:column>
+        <h:column><h:commandButton value="remove" action="#{bean.remove(item)}" /></h:column>
+    </h:dataTable>
+    <h:commandButton value="add" action="#{bean.add}" />
+    <h:commandButton value="save" action="#{bean.save}" />
+    
+</h:form>
+</h:form> -->
+	<h:form>
+    <h:dataTable value="#{bean1.items}" var="item">
+        <h:column><h:inputText value="#{item.ticket.tktNo}" /></h:column>
+        <h:column><h:inputText value="#{item.pax.name}" /></h:column>
+          <h:column><h:inputText value="#{item.pax.surname}" /></h:column>
+        <h:column><h:commandButton value="remove" action="#{bean1.remove(item)}" /></h:column>
+    </h:dataTable>
+    <h:commandButton value="add" action="#{bean1.add}" />
+    <h:commandButton value="save" action="#{bean1.save}" />
+</h:form>
+    </h:body>
+
+</html>
